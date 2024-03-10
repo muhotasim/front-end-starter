@@ -1,0 +1,34 @@
+:root{
+    --default-font-size: 10px;
+    --primary-color: rgba(0, 0, 0, 0.88);
+    --primary-color-highlight: rgba(0, 0, 0, .65);
+    --primary-color-darken: rgba(0, 0, 0, .8);
+    --default-color: rgba(0, 0, 0, 0.8);
+    --white-font-color: #fff;
+    --sidebar-submenu-back: rgba(0, 0, 0, .90);
+    --login-background: linear-gradient(#212121, #07112e);
+}
+html{
+    font-size: var(--default-font-size);
+}
+
+body{
+    font-family: 'roboto',sans-serif;
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+p{
+    font-size: 1.4rem;
+}
+a,a:active,a:visited{
+    text-decoration: none;
+    color: var(--default-color);
+}
+@for $i from 5 through 1 {
+    h#{$i} {
+        font-size: 4rem - $i * .55rem; // Example calculation for font size
+    }
+}

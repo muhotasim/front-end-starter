@@ -1,0 +1,33 @@
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faBackward } from '@fortawesome/free-solid-svg-icons/faBackward';
+import { faBackwardStep } from '@fortawesome/free-solid-svg-icons/faBackwardStep';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+type ForgotPasswordInput = {
+    email?: string;
+};
+const ForgotPasswordPage:React.FC = ()=>{
+    const [loginData, setLoginData] = useState<ForgotPasswordInput>({email: ''})
+    const onChangeFormData = (event: React.ChangeEvent<HTMLInputElement>)=>{
+        setLoginData({...loginData, [event.target.name]: event.target.value})
+    }
+    const onFinish= ()=>{
+    }
+    return <div className='page login-page'>
+        <div className='login__container'>
+            <h4 className='mb-15 section-title'> <Link to={'/login'} className='mr-5'><FontAwesomeIcon icon={faArrowLeft} color='#fff'/></Link> Forgot Password</h4>
+            <div className='login-form px-15 animate-fade-in'>
+                <div className='input-box mb-15'>
+                    <label className='form-label'>Email</label>
+                    <input type="text" name='email' value={loginData.email} onChange={onChangeFormData} className='input'/>
+                </div>
+                <div className='input-box mb-15'>
+                    <button className='btn btn-md btn-primary btn-block'>Continue <span className='ml-5'><FontAwesomeIcon icon={faArrowRight} color='#fff'/></span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+export default ForgotPasswordPage;

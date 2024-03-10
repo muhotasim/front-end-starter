@@ -1,0 +1,49 @@
+.input-box{
+
+}
+.form-label{
+    display: block;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+.section-title{
+    background: var(--primary-color);
+    color: white;
+    padding: 10px;
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
+    margin-top: -.1rem;
+}
+.text-link{
+    color: var(--primary-color)!important;
+}
+.component-loader{
+    background-color: var(--login-background);;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    p{
+        font-size: 1.5rem;
+    }
+}
+
+@for $i from 1 through 20 {
+    .px-#{$i}{ padding: .1rem * $i }
+    .pl-#{$i}{ padding-left: .1rem * $i }
+    .pr-#{$i}{ padding-right: .1rem * $i }
+    .pb-#{$i}{ padding-bottom: .1rem * $i }
+    .pt-#{$i}{ padding-top: .1rem * $i }
+
+    
+    .mx-#{$i}{ margin: .1rem * $i }
+    .ml-#{$i}{ margin-left: .1rem * $i }
+    .mr-#{$i}{ margin-right: .1rem * $i }
+    .mb-#{$i}{ margin-bottom: .1rem * $i }
+    .mt-#{$i}{ margin-top: .1rem * $i }
+}
