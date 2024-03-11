@@ -1,5 +1,3 @@
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import React, { useState } from "react"
 import { NavLink } from "react-router-dom"
 interface MenuItem {
@@ -26,7 +24,7 @@ const SideBarItem: React.FC<MenuItem> = ({ label, link, childrens }) => {
         toggleSubMenu()
     }
     return <li>
-        <NavLink to={link}><span className="label">{label}</span> {childrens.length > 0 && <span className={"submenu__expend "+(subMenu?'open': '')} onClick={onClickMenuExpend}><FontAwesomeIcon icon={faChevronDown} /></span>}</NavLink>
+        <NavLink to={link}><span className="label">{label}</span> {childrens.length > 0 && <span className={"submenu__expend "+(subMenu?'open': '')} onClick={onClickMenuExpend}><span className='fa-icon fa fa-chevron-down' /></span>}</NavLink>
         {childrens.length ? <ul className={'submenu '+(subMenu?'show': '')}>
             {childrens.map((menu, index) => {
                 return <SideBarItem key={index} label={menu.label} link={menu.link} childrens={menu.childrens} />

@@ -1,5 +1,3 @@
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 type ResetPasswordInput = {
     password?: string;
@@ -25,7 +23,7 @@ const ResetPasswordPage:React.FC = ()=>{
                     <input type="text" name='confirm_password' value={loginData.confirm_password} onChange={onChangeFormData} className='input'/>
                 </div>
                 <div className='input-box mb-15'>
-                    <button className='btn btn-md btn-primary btn-block'>Reset Password <span className='ml-5'><FontAwesomeIcon icon={faArrowRight} color='#fff'/></span></button>
+                    <button className='btn btn-md btn-primary btn-block'>Reset Password <span className='ml-5'><span className='fa-icon fa fa-arrow-right' color='#fff'></span></span></button>
                 </div>
             </div>
         </div>

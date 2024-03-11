@@ -8,13 +8,21 @@
 }
 .section-title{
     background: var(--primary-color);
-    color: white;
+    color: var(--light-font-color);
     padding: 10px;
     clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
     margin-top: -.1rem;
 }
 .text-link{
-    color: var(--primary-color)!important;
+    color: var(--link-color)!important;
+}
+.theme-selector{
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    padding: .2rem;
+    border-radius: .3rem;
+    color: var(--light-font-dark);
 }
 .component-loader{
     background-color: var(--login-background);;
@@ -27,7 +35,7 @@
     text-align: center;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: var(--light-font-color);
     p{
         font-size: 1.5rem;
     }

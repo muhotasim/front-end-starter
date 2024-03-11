@@ -2,15 +2,22 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { UiStateInterface } from '../utils/common.interfaces';
 
 const initialState: UiStateInterface = {
-    theme: 'default',
-    themeList: [ 'default' ]
+    theme: 'purple',
+    themeList: [ 'dark', 'light', 'aqua-wave', 'orange', 'purple' ],
 };
 
+let themeStr = localStorage.getItem('active-theme');
+if(themeStr){
+    initialState.theme = themeStr;
+}else{
+    localStorage.setItem('active-theme', initialState.theme);
+}
 export const uiSlice = createSlice({
     name: 'ui',
     initialState,
     reducers: {
         setTheme: (state, action: PayloadAction<{theme: string}>) => {
+            localStorage.setItem('active-theme', action.payload.theme);
             return { ...state, theme: action.payload.theme };
         },
     }

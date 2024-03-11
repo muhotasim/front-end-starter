@@ -24,7 +24,7 @@
     &-primary{
         background-color: var(--primary-color);
         border-color: var(--primary-color-darken);
-        color: var(--white-font-color);
+        color: var(--light-font-color);
         transition-duration: .4s;
         &:hover{
             background-color: var(--primary-color-darken);

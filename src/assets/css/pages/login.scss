@@ -11,7 +11,7 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    background-color: #fff;
+    background-color: var(--login-container);
     transform: translate(-50%, -50%);
     border: 1px solid var(--sidebar-submenu-back);
     border-radius: 3px;

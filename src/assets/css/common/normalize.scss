@@ -1,19 +1,98 @@
-:root{
-    --default-font-size: 10px;
-    --primary-color: rgba(0, 0, 0, 0.88);
-    --primary-color-highlight: rgba(0, 0, 0, .65);
-    --primary-color-darken: rgba(0, 0, 0, .8);
-    --default-color: rgba(0, 0, 0, 0.8);
-    --white-font-color: #fff;
+.dark{
+    --primary-color: rgba(20, 20, 20, 1);
+    --primary-color-highlight: rgba(40, 40, 40, 1);
+    --primary-color-darken: rgba(0, 0, 0, 1);
+
+    --light-font-color: #fff;
+    --dark-font-color: #000;
+    --icon-color: #000;
+
+    --input-border-color: lightgray;
+
     --sidebar-submenu-back: rgba(0, 0, 0, .90);
     --login-background: linear-gradient(#212121, #07112e);
+    --login-container: #fff;
+    --link-color: #1565C0;
+    --page-background: #f5f5fc;
+}
+.light{
+    --primary-color: rgb(239, 246, 255);
+    --primary-color-highlight: rgb(255, 255, 255);
+    --primary-color-darken: rgb(224, 236, 252);
+
+    --light-font-color: #000;
+    --dark-font-color: #000;
+    --icon-color: #000;
+    --link-color: #1565C0;
+
+    --input-border-color: lightgray;
+
+    --sidebar-submenu-back: rgba(253, 253, 255, 0.9);
+    --login-background: linear-gradient(#212121, #07112e);
+    --login-container: #fff;
+
+    --page-background: #f5f5fc;
+}
+.aqua-wave{
+    --primary-color: #1E88E5;
+    --primary-color-highlight: #42A5F5;
+    --primary-color-darken: #1565C0;
+
+    --light-font-color: #fff;
+    --dark-font-color: #000;
+    --link-color: #1565C0;
+
+    --input-border-color: lightgray;
+
+    --sidebar-submenu-back: #1976D2;
+    --login-background: linear-gradient(#1565C0, #1565C0);
+    --login-container: #fff;
+
+    --page-background: #f4faff;
+}
+.orange{
+    --primary-color: #E64A19;
+    --primary-color-highlight: #FF5722;
+    --primary-color-darken: #BF360C;
+
+    --light-font-color: #fff;
+    --dark-font-color: #000;
+    --link-color: #F4511E;
+
+    --input-border-color: lightgray;
+
+    --sidebar-submenu-back: #F4511E;
+    --login-background: linear-gradient(#212121, #212121);
+    --login-container: #fff;
+
+    --page-background: #f4faff;
+}
+.purple{
+    --primary-color: #8E24AA;
+    --primary-color-highlight: #AB47BC;
+    --primary-color-darken: #7B1FA2;
+
+    --light-font-color: #fff;
+    --dark-font-color: #000;
+    --link-color: #7B1FA2;
+
+    --input-border-color: lightgray;
+
+    --sidebar-submenu-back: #6A1B9A;
+    --login-background: linear-gradient(#212121, #212121);
+    --login-container: #fff;
+
+    --page-background: #f4faff;
 }
 html{
-    font-size: var(--default-font-size);
+    font-size: 10px;
 }
 
 body{
     font-family: 'roboto',sans-serif;
+}
+.fa-icon{
+    fill: var(--icon-color);
 }
 * {
     padding: 0;
@@ -25,7 +104,7 @@ p{
 }
 a,a:active,a:visited{
     text-decoration: none;
-    color: var(--default-color);
+    color: var(--dark-font-color);
 }
 @for $i from 5 through 1 {
     h#{$i} {

@@ -1,7 +1,7 @@
 .input{
     outline: none;
     width: 100%;
-    border: .1rem solid lightgray;
+    border: .1rem solid var(--input-border-color);
     font-size: 1.6rem;
     padding: .3rem 1rem;
     border-radius: .3rem;

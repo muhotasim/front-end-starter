@@ -14,7 +14,7 @@ $sidebar-width : 20rem;
     width: $sidebar-width;
     animation: animate-slide-right .4s linear;
     animation-fill-mode: forwards;
-    box-shadow: 0 .2rem .6rem var(--primary-color);
+    box-shadow: 0 .2rem .6rem var(--primary-color-darken);
     
 }
 .sidebar__container.collaspe{
@@ -31,7 +31,7 @@ $sidebar-width : 20rem;
 }
 .app__container .container{
     margin: 6.8rem 2rem 0 2rem;
-    background-color: #f5f5fc;
+    background-color: var(--page-background);
     min-height: 100vh;
     padding: 1rem;
 }

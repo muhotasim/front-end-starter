@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import { faArrowRight, faSignIn, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 type LoginInput = {
     email?: string;
     password?: string;
@@ -15,7 +13,7 @@ const LoginPage:React.FC = ()=>{
     }
     return <div className='page login-page'>
         <div className='login__container'>
-            <h4 className='mb-15 section-title'><span className='mr-5'><FontAwesomeIcon icon={faSignInAlt}/></span> Login</h4>
+            <h4 className='mb-15 section-title'><span className='mr-5'><span className='fa-icon fa fa-sign-in-alt'/></span> Login</h4>
             <div className='login-form px-15 animate-fade-in'>
                 <div className='input-box mb-15'>
                     <label className='form-label'>Email</label>
@@ -26,7 +24,7 @@ const LoginPage:React.FC = ()=>{
                     <input type="text" name='password' value={loginData.password} onChange={onChangeFormData} className='input'/>
                 </div>
                 <div className='input-box mb-15'>
-                    <button className='btn btn-md btn-primary btn-block'>Login <span className='ml-5'><FontAwesomeIcon icon={faArrowRight} color='#fff'/></span></button>
+                    <button className='btn btn-md btn-primary btn-block'>Login <span className='ml-5'><span className='fa-icon fa fa-arrow-right' color='#fff'></span></span></button>
                     <p className='mt-5'>Forgot password click <Link to='/forgot-password' className='text-link'>here</Link></p>
                 </div>
             </div>
