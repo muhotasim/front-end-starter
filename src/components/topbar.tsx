@@ -10,8 +10,18 @@ const TopBar:React.FC<{toggle:()=>void}> = ({ toggle })=>{
     const [openNotification, setOpenNotification] = useState(false);
     const [openUserDetails, setOpenUserDetails] = useState(false);
 
-    const toggleNotification = ()=>setOpenNotification(!openNotification);
-    const toggleUserDetails= ()=>setOpenUserDetails(!openUserDetails);
+    const toggleNotification = ()=>{
+        if(!openNotification){
+            setOpenUserDetails(false)
+        }
+        setOpenNotification(!openNotification);
+    }
+    const toggleUserDetails= ()=>{
+        if(!openUserDetails){
+            setOpenNotification(false)
+        }
+        setOpenUserDetails(!openUserDetails);
+    }
     const ui = useSelector((state:RootState)=>state.ui);
     const changeTheme = (e:ChangeEvent<HTMLSelectElement>)=>{
         dispatch(setTheme({theme: e.target.value}))
