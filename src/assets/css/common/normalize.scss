@@ -33,6 +33,24 @@
 
     --page-background: #f5f5fc;
 }
+.light-mono{
+    --primary-color: #f6f8fc;
+    --primary-color-highlight: #fafafa;
+    --primary-color-darken: #eaf1fb
+
+    --light-font-color: #444746;
+    --dark-font-color: #444746;
+    --icon-color: #444746;
+    --link-color: #1565C0;
+
+    --input-border-color: lightgray;
+
+    --sidebar-submenu-back: rgba(253, 253, 255, 0.9);
+    --login-background: #eaf1fb;
+    --login-container: #fff;
+
+    --page-background: #fff;
+}
 .aqua-wave{
     --primary-color: #1E88E5;
     --primary-color-highlight: #42A5F5;

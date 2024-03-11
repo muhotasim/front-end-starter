@@ -3,7 +3,7 @@ import { UiStateInterface } from '../utils/common.interfaces';
 
 const initialState: UiStateInterface = {
     theme: 'purple',
-    themeList: [ 'dark', 'light', 'aqua-wave', 'orange', 'purple' ],
+    themeList: [ 'dark', 'light','light-mono', 'aqua-wave', 'orange', 'purple' ],
 };
 
 let themeStr = localStorage.getItem('active-theme');

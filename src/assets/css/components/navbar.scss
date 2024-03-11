@@ -9,6 +9,41 @@
     left: 0;
     height: 4.9rem;
     box-shadow: 0 0.1rem 0.2rem var(--primary-color-darken);
+    .notification-details{
+        position: absolute;
+        z-index: 9999;
+        width: 20rem;
+        left: -15rem;
+        top: 3.5rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        background: var(--primary-color);
+        box-shadow: 2px 2px 5px var(--dark-font-color);
+        &.open-notification{
+            max-height: 1000px;
+            transition: all 0.4s ease;
+        }
+        ul{
+            display: block;
+            li{
+                padding: .5rem;
+                display: block;
+                border-bottom: 1px solid var(--sidebar-submenu-back);
+                &.see-all-notification{
+                    text-align: center;
+                }
+                a{
+                    line-height: 2.4rem;
+                    transition-duration: .4s;
+                    &:hover{
+                        transition-duration: .4s;
+                        background: var(--primary-color-highlight);
+                    }
+                }
+            }
+        }
+    }
 }
 a.topbar-brand,a.topbar-toggle{
     float: left;
@@ -25,6 +60,9 @@ a.topbar-brand,a.topbar-toggle{
     list-style: none;
     padding: 1.5rem 2rem;
     margin: 0 auto;
+}
+.top-bar ul li{
+    position: relative;
 }
 .top-bar ul li a{
     color: var(--light-font-color);
