@@ -1,3 +1,15 @@
+a,a:active,a:visited{
+    text-decoration: none;
+    color: var(--dark-font-color);
+}
+.fa-icon{
+    fill: var(--icon-color);
+}
+@for $i from 5 through 1 {
+    h#{$i} {
+        font-size: 4rem - $i * .55rem; // Example calculation for font size
+    }
+}
 .input-box{
 
 }

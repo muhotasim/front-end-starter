@@ -1,4 +1,3 @@
-@import './theme.scss';
 html{
     font-size: 10px;
 }
@@ -6,9 +5,7 @@ html{
 body{
     font-family: 'roboto',sans-serif;
 }
-.fa-icon{
-    fill: var(--icon-color);
-}
+
 * {
     padding: 0;
     margin: 0;
@@ -16,13 +13,4 @@ body{
 }
 p{
     font-size: 1.4rem;
-}
-a,a:active,a:visited{
-    text-decoration: none;
-    color: var(--dark-font-color);
-}
-@for $i from 5 through 1 {
-    h#{$i} {
-        font-size: 4rem - $i * .55rem; // Example calculation for font size
-    }
 }
