@@ -18,7 +18,7 @@ const TopBar:React.FC<{toggle:()=>void}> = ({ toggle })=>{
             }}> <span><span className='fa-icon fa fa-bars' ></span> </span></a>
             <ul>
                 <li><select className="theme-selector" onChange={changeTheme} value={ui.theme}>
-                    {ui.themeList.map((value, index)=><option value={value}>{value}</option>)}
+                    {ui.themeList.map((value, index)=><option key={index} value={value}>{value}</option>)}
                     </select></li>
                 <li><a><span><span className='fa-icon fa fa-bell'> </span></span></a></li>
                 <li>
