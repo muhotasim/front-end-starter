@@ -9,33 +9,57 @@
     left: 0;
     height: 4.9rem;
     box-shadow: 0 0.1rem 0.2rem var(--primary-color-darken);
-    .notification-details{
+    .menu-details{
         position: absolute;
         z-index: 9999;
-        width: 20rem;
-        left: -15rem;
+        width: 30rem;
+        left: -25rem;
         top: 3.5rem;
         max-height: 0;
+        border-radius: .3rem;
         overflow: hidden;
         transition: all 0.6s ease;
         background: var(--primary-color);
         box-shadow: 2px 2px 5px var(--dark-font-color);
-        &.open-notification{
+        &.open-menu{
             max-height: 1000px;
             transition: all 0.6s ease;
         }
+        .user__details{
+                        
+            padding: 1rem;
+            text-align: center;
+            .img{
+                height: 8rem;
+                width: 8rem;
+                border-radius: 50%;
+                margin: 2rem auto;
+                border: 2px solid var(--primary-color-darken);
+            }
+            .actions{
+                display: flex;
+                gap: 2rem;
+                button{
+                    display: block;
+                    width: 100%;
+                    font-size: 1.2rem;
+                }
+            }
+        }
         ul{
             display: block;
+            padding: 0;
             li{
-                padding: .5rem;
-                display: block;
-                border-bottom: 1px solid var(--sidebar-submenu-back);
-                &.see-all-notification{
+                &.see-all-menu{
                     text-align: center;
                 }
+                
                 a{
+                    display: block;
+                    padding: .8rem 1.5rem .8rem 1.5rem;
                     line-height: 2.4rem;
                     transition-duration: .4s;
+                    border-bottom: 1px solid var(--sidebar-submenu-back);
                     &:hover{
                         transition-duration: .4s;
                         background: var(--primary-color-highlight);
@@ -56,7 +80,7 @@ a.topbar-brand,a.topbar-toggle{
 .top-bar ul{
     display: flex;
     justify-content: flex-end;
-    gap: 4rem;
+    gap: 3rem;
     list-style: none;
     padding: 1.5rem 2rem;
     margin: 0 auto;

@@ -2,6 +2,10 @@
   "name": "front-end",
   "private": true,
   "version": "0.0.0",
+  "author": {
+    "name": "Muhotasim Fuad",
+    "email": "muhotasimF@gmail.com"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite --port 8080",
