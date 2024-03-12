@@ -14,7 +14,7 @@ interface DataTableInterface {
     columns: DataTableColumnInterface[],
     data: DataTableDataInterface[],
     onRowClick?: (data: DataTableDataInterface) => void,
-    isLoading: boolean,
+    isLoading?: boolean,
     paginationOptions?: PaginationInterface
 }
 
@@ -71,8 +71,9 @@ const Pagination:React.FC<PaginationInterface> = ({ currentPage = 1, totalPages 
 
     return (
         <div className="pagination">
-            <button onClick={handlePreviousPage} disabled={currentPage === 1}>Previous</button>
             <ul className="page-numbers">
+                
+                {currentPage === 1?null:<li  ><button onClick={handlePreviousPage}>Previous</button></li>}
                 {getPageNumbers().map(page => (
                     <li key={page}>
                         <button onClick={() => {
@@ -80,8 +81,8 @@ const Pagination:React.FC<PaginationInterface> = ({ currentPage = 1, totalPages 
                         }} className={currentPage === page ? 'active' : ''}>{page}</button>
                     </li>
                 ))}
+                {currentPage === totalPages?null:<li  ><button onClick={handleNextPage}>Next</button></li>}
             </ul>
-            <button onClick={handleNextPage} disabled={currentPage === totalPages}>Next</button>
         </div>
     );
 };
