@@ -4,7 +4,7 @@ import DataTable from "../../components/datatable";
 const DashboardPage:React.FC = ()=>{
     return <div className='page dashboard-page'>
         <DataTable  columns={[
-            {label: 'Id', key: 'id', dataIndex: 'id'},
+            {label: 'Id', key: 'id', dataIndex: 'id', searchable: false},
             {label: 'Name', key: 'name', dataIndex: 'name'},
             {label: 'Details', key: 'details', dataIndex: 'details'},
             {label: 'Details2', key: 'details2', dataIndex: 'details2'},

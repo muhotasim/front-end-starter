@@ -47,6 +47,31 @@
                 font-weight: 600;
                 background-color: var(--primary-color);
                 color: var(--light-font-color);
+                position: relative;
+                .column-search-box{
+                    position: absolute;
+                    right: 0;
+                    top: 2.8rem;
+                    width: 20rem;
+                    background-color: inherit;
+                    padding: 1rem;
+                    border-radius: .3rem;
+                    display: flex;
+                    animation: animate-fade-in .4s ease-in;
+                    button{
+                        padding: .5rem;
+                        outline: none;
+                        background-color: transparent;
+                        border: .1rem solid var(--primary-color-darken);
+                        color: var(--light-font-color);
+                        cursor: pointer;
+                    }
+                }
+                .data-table-search{
+                    font-size: 1.2rem;
+                    margin-top: .2rem;
+                    cursor: pointer;
+                }
             }
             
         }
