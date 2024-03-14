@@ -8,6 +8,62 @@
     height: 3.2rem;
 }
 .input:focus{
-    
     border: .1rem solid rgba(56, 125, 255, 0.281);
+}
+
+.select-input{
+    background-color: #fff;
+    font-size: 1.4rem;
+    border-radius: .3rem;
+    .value-container{
+       width: 100%;
+       display: flex;
+       flex-wrap: wrap;
+       padding: .3rem;
+       .value{
+            background-color: lightgray;
+            margin: .3rem .5rem;
+            display: inline-block;
+            padding: .2rem .6rem;
+            line-height: 2rem;
+            border-radius: .3rem;
+            .remove-icon{
+                opacity: .6;
+                cursor: pointer;
+                padding: 0 .5rem;
+                transition-duration: .4s;
+                &:hover{
+                    opacity: 1;
+                    
+                }
+            }
+        }
+       .search{
+        display: inline-flex;
+        border: none;
+        flex-grow: 1;
+        line-height: 2rem;
+        outline: none;
+        padding: .2rem .5rem;
+        margin: .3rem .5rem;
+       }
+    }
+    .select-options{
+        max-height: 25rem;
+        overflow-y: auto;
+        background-color: #fff;
+        box-shadow: 2px 2px 5px black;
+        padding: 1rem;
+        border-radius: .5rem;
+        ul li{
+            padding: .5rem;
+            transition-duration: .4s;
+            &.selected{
+                background-color:rgb(231, 230, 230);
+            }
+        }
+        ul li:hover{
+            background-color:rgb(231, 230, 230);
+        }
+    }
 }

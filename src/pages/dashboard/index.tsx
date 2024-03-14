@@ -1,5 +1,6 @@
 import React from "react";
 import DataTable from "../../components/datatable";
+import Select from "../../components/select";
 
 const DashboardPage:React.FC = ()=>{
     return <div className='page dashboard-page'>
@@ -15,6 +16,11 @@ const DashboardPage:React.FC = ()=>{
             {id: 4, name: 'test 4', details: 'hello world'},
             {id: 5, name: 'test 5', details: 'hello world'},
         ]} isLoading={false}/>
+        <Select placeHolder="Select"  allowSearch onSearch={(option, searchText)=>{
+            return option.value.toString().includes(searchText)
+        }} value={2} options={[...new Array(500)].map((val, index)=>({label: (index+1)+'', value: index+1}))} onChange={(val)=>{
+            console.log(val)
+        }}/>
     </div>
 }
 export  default DashboardPage;
