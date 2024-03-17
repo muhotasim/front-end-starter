@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, Navigate } from 'react-router-dom';
+import { userActions } from '../../store/user-store.store';
+import { RootState } from '../../store';
+
 type LoginInput = {
-    email?: string;
-    password?: string;
+    email: string;
+    password: string;
 };
 const LoginPage:React.FC = ()=>{
+    const dispatch = useDispatch();
+    const {isLoading, loggedIn} = useSelector((state:RootState)=>state.users)
     const [loginData, setLoginData] = useState<LoginInput>({email: '', password: ''})
     const onChangeFormData = (event: React.ChangeEvent<HTMLInputElement>)=>{
         setLoginData({...loginData, [event.target.name]: event.target.value})
     }
-    const onFinish= ()=>{
+    if(loggedIn){
+       return <Navigate to={'/'}/>
     }
     return <div className='page login-page'>
         <div className='login__container'>
@@ -24,7 +31,7 @@ const LoginPage:React.FC = ()=>{
                     <input type="text" name='password' value={loginData.password} onChange={onChangeFormData} className='input'/>
                 </div>
                 <div className='input-box mb-15'>
-                    <button className='btn btn-md btn-primary btn-block'>Login <span className='ml-5'><span className='fa-icon fa fa-arrow-right' color='#fff'></span></span></button>
+                    <button disabled={isLoading} className='btn btn-md btn-primary btn-block' onClick={()=>{ userActions.login(loginData.email, loginData.password)(dispatch) }}>Login <span className='ml-5'><span className={`fa-icon fa ${isLoading?'fa-spin fa-sync':'fa-arrow-right'}`} color='#fff'></span></span></button>
                     <p className='mt-5'>Forgot password click <Link to='/forgot-password' className='text-link'>here</Link></p>
                 </div>
             </div>

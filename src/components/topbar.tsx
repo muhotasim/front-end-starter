@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { RootState } from "../store";
 import { setTheme } from "../store/ui-store.store";
 import React, { ChangeEvent, useState } from "react";
-import { logout } from "../store/user-store.store";
 
 const TopBar:React.FC<{toggle:()=>void}> = ({ toggle })=>{
     const dispatch = useDispatch();
@@ -55,7 +54,7 @@ const TopBar:React.FC<{toggle:()=>void}> = ({ toggle })=>{
                         <div className="user__details">
                             <img className="img"/>
                             <div className="actions">
-                                <button className="btn btn-md btn-primary">Change Password</button><button onClick={()=>{dispatch(logout())}} className="btn btn-md btn-primary">Logout</button>
+                                <button className="btn btn-md btn-primary">Change Password</button><button onClick={()=>{}} className="btn btn-md btn-primary">Logout</button>
                             </div>
                         </div>
                     </div>  

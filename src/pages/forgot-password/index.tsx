@@ -8,8 +8,6 @@ const ForgotPasswordPage:React.FC = ()=>{
     const onChangeFormData = (event: React.ChangeEvent<HTMLInputElement>)=>{
         setLoginData({...loginData, [event.target.name]: event.target.value})
     }
-    const onFinish= ()=>{
-    }
     return <div className='page login-page'>
         <div className='login__container'>
             <h4 className='mb-15 section-title'> <Link to={'/login'} className='mr-5'><span className='fa-icon fa fa-arrow-left' ></span></Link> Forgot Password</h4>
