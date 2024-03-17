@@ -16,4 +16,9 @@
     border: 1px solid var(--sidebar-submenu-back);
     border-radius: 3px;
     transition-duration: .4s;
+    .action-success{
+        font-weight: 600;
+        padding-bottom: 2rem;
+        font-size: 1.6rem;
+    }
 }

@@ -102,3 +102,8 @@
 
     --page-background: #f4faff;
 }
+
+.dark .section-title,
+.dark .section-title a{
+    color: var(--light-font-color);
+}

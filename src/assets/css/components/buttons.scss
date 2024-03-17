@@ -26,9 +26,14 @@
         border-color: var(--primary-color-darken);
         color: var(--light-font-color);
         transition-duration: .4s;
+        
         &:hover{
             background-color: var(--primary-color-darken);
             transition-duration: .4s;
+        }
+        &:disabled{
+            opacity: .8;
+            cursor: not-allowed;
         }
     }
 }

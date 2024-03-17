@@ -15,6 +15,8 @@ const initialState: UserStateInterface = {
     loggedIn: false,
     isLoading: false,
     error: null,
+    passwordResetSuccess: false,
+    forgotPasswordMailSend: false
 };
 
 export const userSlice = createSlice({
@@ -30,6 +32,7 @@ export const userSlice = createSlice({
         updateState: (state, action: PayloadAction<{ [key: string]: any }>) => {
             return { ...state, ...action.payload };
         },
+
     }
 });
 export const userActions = {
@@ -142,7 +145,29 @@ export const userActions = {
         dispatch(userSlice.actions.actionDone({ error: error }))
     }
 
-    }
+    },
+    forgotPassword: (email: string)=>async (dispatch: any) =>{
+        try {
+            dispatch(userSlice.actions.startAction())
+            const authService = new AuthApiService(appConst.API_URL)
+            await authService.forgotPassword(email);
+            dispatch(userSlice.actions.updateState({forgotPasswordMailSend: true}));
+            dispatch(userSlice.actions.actionDone({ error: null }))
+        } catch (error) {
+            dispatch(userSlice.actions.actionDone({ error: error }))
+        }
+    },
+    resetPassword: (token: string, newPassword:string)=>async (dispatch: any) =>{
+        try {
+            dispatch(userSlice.actions.startAction())
+            const authService = new AuthApiService(appConst.API_URL)
+            await authService.resetPassword(token, newPassword);
+            dispatch(userSlice.actions.updateState({passwordResetSuccess: true}));
+            dispatch(userSlice.actions.actionDone({ error: null }));
+        } catch (error) {
+            dispatch(userSlice.actions.actionDone({ error: error }))
+        }
+    },
 };
 
 export default userSlice.reducer;

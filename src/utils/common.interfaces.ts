@@ -13,6 +13,8 @@ export interface UserStateInterface {
     loggedIn: boolean;
     isLoading: boolean;
     error: any;
+    passwordResetSuccess: boolean;
+    forgotPasswordMailSend: boolean;
 }
 
 export interface UiStateInterface {
