@@ -27,6 +27,8 @@ a,a:active,a:visited{
     padding: 10px;
     clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
     margin-top: -.1rem;
+    border-radius: .6rem;
+    border-bottom-left-radius: 0;
 }
 .text-link{
     color: var(--link-color)!important;
