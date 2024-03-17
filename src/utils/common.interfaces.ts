@@ -15,6 +15,8 @@ export interface UserStateInterface {
     error: any;
     passwordResetSuccess: boolean;
     forgotPasswordMailSend: boolean;
+    changePasswordSuccess: boolean;
+    appLoading: boolean;
 }
 
 export interface UiStateInterface {

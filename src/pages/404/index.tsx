@@ -2,7 +2,7 @@
 import React from "react";
 
 const PageNotFound:React.FC = ()=>{
-    return <div className='page no-data-found-page'>
+    return <div className='page no-data-found-page animate-fade-in'>
        <div className="content">
        <h1><span className='fa-icon fa fa-circle-exclamation'  ></span> Resource Not Found</h1>
        <p>

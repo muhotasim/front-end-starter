@@ -10,7 +10,7 @@ type ResetPasswordInput = {
 const ResetPasswordPage:React.FC = ()=>{
     const dispatch = useDispatch()
     const {token} = useParams()
-    const navicate = useNavigate()
+    const navigate = useNavigate()
     const {isLoading, passwordResetSuccess} = useSelector(((state:RootState)=>state.users))
     const [loginData, setLoginData] = useState<ResetPasswordInput>({password: '', confirm_password: ''})
     const onChangeFormData = (event: React.ChangeEvent<HTMLInputElement>)=>{
@@ -24,7 +24,7 @@ const ResetPasswordPage:React.FC = ()=>{
             <h4 className='mb-15 section-title'>Reset Password</h4>
             {passwordResetSuccess?<div className='login-form px-15 animate-fade-in'>
                 <p className='action-success'>Your password has been reset successfully</p>
-                <button className='btn btn-md btn-primary btn-block' onClick={()=>{navicate('/login')}}>Back To Login</button>
+                <button className='btn btn-md btn-primary btn-block' onClick={()=>{navigate('/login')}}>Back To Login</button>
             </div>:<div className='login-form px-15 animate-fade-in'>
                 <div className='input-box mb-15'>
                     <label className='form-label'>Password</label>

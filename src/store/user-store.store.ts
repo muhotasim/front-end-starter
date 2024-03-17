@@ -17,7 +17,9 @@ const initialState: UserStateInterface = {
     isLoading: false,
     error: null,
     passwordResetSuccess: false,
-    forgotPasswordMailSend: false
+    changePasswordSuccess: false,
+    forgotPasswordMailSend: false,
+    appLoading: true,
 };
 
 export const userSlice = createSlice({
@@ -109,7 +111,8 @@ export const userActions = {
                                 email: user.email,
                                 permissions: user.permissions,
                             },
-                            loggedIn: true
+                            loggedIn: true,
+                            appLoading: false
                         }
                         setCookie('access_token', refreshTokenData.access_token, Number(refreshTokenData.ac_token_expires_at))
                         setCookie('access_token_expiry_at', refreshTokenData.ac_token_expires_at, Number(refreshTokenData.ac_token_expires_at))
@@ -138,7 +141,8 @@ export const userActions = {
                             email: user.email,
                             permissions: user.permissions,
                         },
-                        loggedIn: true
+                        loggedIn: true,
+                        appLoading: false
                     }
                     dispatch(userSlice.actions.updateState(loginData))
                 } else {
@@ -149,6 +153,8 @@ export const userActions = {
             error = e.message
         }
         dispatch(userSlice.actions.actionDone({ error: error }));
+        
+        dispatch(userSlice.actions.updateState({appLoading: false}))
     },
     logout: (accessToken: string) => async (dispatch: any) => {
         let error = null;
@@ -162,7 +168,7 @@ export const userActions = {
                 clearCookie('access_token_expiry_at')
                 clearCookie('refresh_token')
                 clearCookie('refresh_token_expiry_at')
-                dispatch(userSlice.actions.updateState(initialState));
+                dispatch(userSlice.actions.updateState({...initialState, appLoading: false}));
             } else {
                 error = logoutResult.message;
             }
@@ -200,6 +206,24 @@ export const userActions = {
                 dispatch(userSlice.actions.updateState({ passwordResetSuccess: true }));
             } else {
                 error = resetpasswordResult.message;
+            }
+
+        } catch (e:any) {
+            error = e.message;
+        }
+        dispatch(userSlice.actions.actionDone({ error: error }))
+    },
+    changePassword: (accessToken: string,password: string, newPassword: string) => async (dispatch: any) => {
+        let error = null
+        try {
+            dispatch(userSlice.actions.startAction())
+            const authService = new AuthApiService(appConst.API_URL, accessToken)
+            const changepasswordResponse = await authService.changePassword(password, newPassword);
+            const changePasswordResult = await changepasswordResponse.json()
+            if (changePasswordResult.type == ResponseType.success) {
+                dispatch(userSlice.actions.updateState({ changePasswordSuccess: true }));
+            } else {
+                error = changePasswordResult.message;
             }
 
         } catch (e:any) {

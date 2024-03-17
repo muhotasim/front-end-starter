@@ -3,7 +3,7 @@ import DataTable from "../../components/datatable";
 import Select from "../../components/select";
 
 const DashboardPage:React.FC = ()=>{
-    return <div className='page dashboard-page'>
+    return <div className='page dashboard-page animate-fade-in'>
         <DataTable  columns={[
             {label: 'Id', key: 'id', dataIndex: 'id', searchable: false},
             {label: 'Name', key: 'name', dataIndex: 'name'},
