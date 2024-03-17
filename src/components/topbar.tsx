@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { RootState } from "../store";
 import { setTheme } from "../store/ui-store.store";
 import React, { ChangeEvent, useState } from "react";
+import { userActions } from "../store/user-store.store";
 
 const TopBar:React.FC<{toggle:()=>void}> = ({ toggle })=>{
     const dispatch = useDispatch();
+    const { token } = useSelector((state:RootState)=>state.users.user)
     const [openNotification, setOpenNotification] = useState(false);
     const [openUserDetails, setOpenUserDetails] = useState(false);
 
@@ -25,6 +27,7 @@ const TopBar:React.FC<{toggle:()=>void}> = ({ toggle })=>{
     const changeTheme = (e:ChangeEvent<HTMLSelectElement>)=>{
         dispatch(setTheme({theme: e.target.value}))
     }
+
     return <>
         <nav className="top-bar">
             <Link className="topbar-brand" to='/'>Speedy </Link>
@@ -54,7 +57,9 @@ const TopBar:React.FC<{toggle:()=>void}> = ({ toggle })=>{
                         <div className="user__details">
                             <img className="img"/>
                             <div className="actions">
-                                <button className="btn btn-md btn-primary">Change Password</button><button onClick={()=>{}} className="btn btn-md btn-primary">Logout</button>
+                                <button className="btn btn-md btn-primary">Change Password</button><button onClick={()=>{
+                                   if(token) userActions.logout(token)(dispatch)
+                                }} className="btn btn-md btn-primary">Logout</button>
                             </div>
                         </div>
                     </div>  

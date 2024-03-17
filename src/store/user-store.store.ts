@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { UserStateInterface } from '../utils/common.interfaces';
 import { AuthApiService } from '../services/auth-api.service';
 import appConst from '../constants/app.const';
-import { getCookie, getCookieWithExpiry, setCookie } from '../utils/common.functions';
+import { clearCookie, getCookie, setCookie } from '../utils/common.functions';
 
 const initialState: UserStateInterface = {
     user: {
@@ -29,7 +29,7 @@ export const userSlice = createSlice({
         },
         updateState: (state, action: PayloadAction<{ [key: string]: any }>) => {
             return { ...state, ...action.payload };
-        }
+        },
     }
 });
 export const userActions = {
@@ -68,7 +68,7 @@ export const userActions = {
             dispatch(userSlice.actions.actionDone({ error: error }))
         }
     },
-    revalidateTokens: (logedIn:boolean)=>async (dispatch: any) => {
+    revalidateTokens: ()=>async (dispatch: any) => {
         try {
         const accessToken = getCookie('access_token');
         const refreshToken = getCookie('refresh_token');
@@ -77,6 +77,7 @@ export const userActions = {
         let nearExpiring = (accessTokenExpiry&&((Number(accessTokenExpiry)-new Date().getTime())/1000<180))
         if(refreshToken && (!accessToken || nearExpiring)){
             const refreshTokenResponse = await authService.refreshToken(refreshToken);
+            console.log('new token granted : '+new Date().toLocaleString())
             if(refreshTokenResponse.ok){
                 
                 const refreshTokenData = await refreshTokenResponse.json();
@@ -125,6 +126,22 @@ export const userActions = {
     } catch (error) {
             dispatch(userSlice.actions.actionDone({ error: error }))
         }
+    },
+    logout:(accessToken:string)=>async (dispatch: any) =>{
+        try {
+        dispatch(userSlice.actions.startAction())
+        const authService = new AuthApiService(appConst.API_URL, accessToken)
+        await authService.logout();
+        clearCookie('access_token')
+        clearCookie('access_token_expiry_at')
+        clearCookie('refresh_token')
+        clearCookie('refresh_token_expiry_at')
+        dispatch(userSlice.actions.updateState(initialState))
+        dispatch(userSlice.actions.actionDone({ error: null }))
+    } catch (error) {
+        dispatch(userSlice.actions.actionDone({ error: error }))
+    }
+
     }
 };
 

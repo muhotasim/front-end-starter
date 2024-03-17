@@ -7,11 +7,9 @@ import { rootStore } from './store/index.ts';
 import ThemeProvider from './components/theme.provider.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
     <Provider store={rootStore}>
       <ThemeProvider>
         <App />
       </ThemeProvider>
-    </Provider>
-  </React.StrictMode>,
+    </Provider>,
 )

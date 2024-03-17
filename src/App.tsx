@@ -4,21 +4,20 @@ import ProtectedRoute from './components/protected-route';
 import Loader from './components/loading';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from './store/user-store.store';
-import { RootState } from './store';
 const Dashboard = lazy(()=>import('./pages/dashboard'))
 const Login = lazy(()=>import('./pages/login'))
 const ForgotPassword = lazy(()=>import('./pages/forgot-password'))
 const ResetPassword = lazy(()=>import('./pages/reset-password'))
 const PageNotFound = lazy(()=>import('./pages/404'));
 function App() {
-
-  const isLogedIn = useSelector((state:RootState)=>state.users.loggedIn)
   const dispatch = useDispatch();
 
   useEffect(()=>{
-    userActions.revalidateTokens(isLogedIn)(dispatch);
+    userActions.revalidateTokens()(dispatch);
+    console.log('mounted '+new Date().toLocaleString())
     setInterval(()=>{
-      userActions.revalidateTokens(isLogedIn)(dispatch);
+      console.log('refreshed: '+new Date().toLocaleString())
+      userActions.revalidateTokens()(dispatch);
     }, 60000)
   },[])
 

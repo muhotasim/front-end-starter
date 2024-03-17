@@ -18,21 +18,6 @@ export const getCookie = (name: string) => {
     }
     return '';
 }
-export const getCookieWithExpiry = (name: string): CookieInfo | null =>{
-    const cookieName = `${name}=`;
-    const cookies = document.cookie.split(';');
-    for (let i = 0; i < cookies.length; i++) {
-      let cookie = cookies[i].trim();
-      if (cookie.startsWith(cookieName)) {
-        const cookieValue = cookie.substring(cookieName.length, cookie.length);
-        // Extract expiration time if available
-        let expires: Date | undefined;
-        const match = cookie.match(/expires=([^;]+)/);
-        if (match) {
-          expires = new Date(match[1]);
-        }
-        return { value: cookieValue, expires };
-      }
-    }
-    return null;
-  }
+export const clearCookie = (name: string)=> {
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+}
