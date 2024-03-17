@@ -73,6 +73,19 @@ a,a:active,a:visited{
     animation: show-and-fade-out 10s ease-in-out;
     animation-fill-mode: forwards;
 }
+.error-message{
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border: .1rem solid var(--primary-color-darken);
+    background-color: var(--primary-color);
+    color: var(--light-font-color);
+    border-radius: .5rem;
+    font-weight: 600;
+    animation: animate-fade-in .4s ease-in;
+    -webkit-animation: animate-fade-in .4s ease-in;
+    -moz-animation: animate-fade-in .4s ease-in;
+    -o-animation: animate-fade-in .4s ease-in;
+}
 @for $i from 1 through 20 {
     .px-#{$i}{ padding: .1rem * $i }
     .pl-#{$i}{ padding-left: .1rem * $i }

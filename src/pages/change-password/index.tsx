@@ -21,6 +21,7 @@ const ChangePasswordPage: React.FC = () => {
                 <h3>Change Password</h3>
             </div>
             <div className="card-body">
+                {error&&<p className="error-message">{error}</p>}
                 {!changePasswordSuccess?<div>
                     <div className='input-box mt-15'>
                         <label className='form-label'>Password</label>
