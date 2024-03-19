@@ -31,7 +31,15 @@ export interface UserStateInterface {
     appLoading: boolean;
     notifications: NotificationInterface<any>[]
 }
-
+export interface NotificationStateInterface {
+    perPage: number;
+    page: number;
+    notifications: NotificationInterface<number>[];
+    total: number;
+    
+    isLoading: boolean;
+    error: any;
+}
 export interface UiStateInterface {
     theme: string
     themeList: string[]

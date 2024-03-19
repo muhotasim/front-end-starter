@@ -12,6 +12,7 @@ const ChangePassword = lazy(()=>import('./pages/change-password'))
 const ForgotPassword = lazy(()=>import('./pages/forgot-password'))
 const ResetPassword = lazy(()=>import('./pages/reset-password'))
 const PageNotFound = lazy(()=>import('./pages/404'));
+const Notification = lazy(()=>import('./pages/notifications'));
 function App() {
   const dispatch = useDispatch();
   const appLoading = useSelector((state:RootState)=>state.users.appLoading)
@@ -35,6 +36,7 @@ function App() {
             <Route path='/reset-password/:token' element={<ResetPassword/>}/>
 
             <Route path='/' element={<ProtectedRoute component={Dashboard}/>}/>
+            <Route path='/notifications' element={<ProtectedRoute component={Notification}/>}/>
             <Route path='/change-password' element={<ProtectedRoute component={ChangePassword}/>}/>
             <Route path='/*' element={<ProtectedRoute component={PageNotFound}/>}/>
           </Routes>
