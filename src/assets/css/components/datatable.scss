@@ -77,25 +77,41 @@
         }
     }
     .pagination{
-        padding: 1rem 0;
+        padding: 1.5rem 0;
         .page-numbers{
             display: flex;
             li{
                 list-style: none;
+                margin-right: .4rem;
+                border-radius: .3rem;
                 &:first-child button{
                     border-top-left-radius: .3rem;
                     border-bottom-left-radius: .3rem;
+                }
+                &.active button{
+                    background-color: var(--primary-color);
+                    color: var(--light-font-color);
                 }
                 &:last-child button{
                     border-top-right-radius: .3rem;
                     border-bottom-right-radius: .3rem;
                 }
+                &:first-child, &:last-child{
+                    background-color: var(--primary-color);
+                    button{
+                        color: var(--light-font-color);
+                    }
+                }
                 button{
-                    min-width: 2rem;
-                    padding: .3rem .8rem;
+                    min-width: 3rem;
+                    padding: .6rem .8rem;
                     border: .1rem solid var(--primary-color);
                     background-color: transparent;
                     cursor: pointer;
+                    &:disabled{
+                        opacity: .6;
+                        cursor: not-allowed;
+                    }
                 }
             }
         }

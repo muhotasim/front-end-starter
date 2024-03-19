@@ -113,15 +113,15 @@ const Pagination: React.FC<PaginationInterface> = ({ currentPage = 1, totalPages
         <div className="pagination">
             <ul className="page-numbers">
 
-                {currentPage === 1 ? null : <li  ><button onClick={handlePreviousPage}>Previous</button></li>}
+                <li  ><button disabled={currentPage === 1} onClick={handlePreviousPage}>Previous</button></li>
                 {getPageNumbers().map(page => (
-                    <li key={page}>
+                    <li key={page} className={currentPage === page ? 'active' : ''}>
                         <button onClick={() => {
                             if (onPageChange) onPageChange(page)
-                        }} className={currentPage === page ? 'active' : ''}>{page}</button>
+                        }} >{page}</button>
                     </li>
                 ))}
-                {currentPage === totalPages ? null : <li  ><button onClick={handleNextPage}>Next</button></li>}
+                <li  ><button disabled={currentPage === totalPages} onClick={handleNextPage}>Next</button></li>
             </ul>
         </div>
     );
