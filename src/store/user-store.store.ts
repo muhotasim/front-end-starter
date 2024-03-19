@@ -20,6 +20,7 @@ const initialState: UserStateInterface = {
     changePasswordSuccess: false,
     forgotPasswordMailSend: false,
     appLoading: true,
+    notifications: []
 };
 
 export const userSlice = createSlice({
@@ -62,7 +63,8 @@ export const userActions = {
                             email: user.email,
                             permissions: user.permissions,
                         },
-                        loggedIn: true
+                        loggedIn: true,
+                        notifications: user.notifications
                     }
                     setCookie('access_token', tokenInfo.access_token, Number(tokenInfo.ac_token_expires_at))
                     setCookie('access_token_expiry_at', tokenInfo.ac_token_expires_at, Number(tokenInfo.ac_token_expires_at))
@@ -112,8 +114,10 @@ export const userActions = {
                                 permissions: user.permissions,
                             },
                             loggedIn: true,
-                            appLoading: false
+                            appLoading: false,
+                            notifications: user.notifications
                         }
+                        
                         setCookie('access_token', refreshTokenData.access_token, Number(refreshTokenData.ac_token_expires_at))
                         setCookie('access_token_expiry_at', refreshTokenData.ac_token_expires_at, Number(refreshTokenData.ac_token_expires_at))
                         setCookie('refresh_token', refreshTokenData.refresh_token, Number(refreshTokenData.rf_token_expires_at))
@@ -142,7 +146,8 @@ export const userActions = {
                             permissions: user.permissions,
                         },
                         loggedIn: true,
-                        appLoading: false
+                        appLoading: false,
+                        notifications: user.notifications
                     }
                     dispatch(userSlice.actions.updateState(loginData))
                 } else {

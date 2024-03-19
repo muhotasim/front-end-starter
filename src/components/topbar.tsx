@@ -8,7 +8,8 @@ import { userActions } from "../store/user-store.store";
 const TopBar:React.FC<{toggle:()=>void}> = ({ toggle })=>{
     const dispatch = useDispatch();
     const navigate = useNavigate()
-    const { token } = useSelector((state:RootState)=>state.users.user)
+    const { user,notifications } = useSelector((state:RootState)=>state.users)
+    const {token} = user;
     const [openNotification, setOpenNotification] = useState(false);
     const [openUserDetails, setOpenUserDetails] = useState(false);
 
@@ -44,9 +45,9 @@ const TopBar:React.FC<{toggle:()=>void}> = ({ toggle })=>{
                     <a onClick={toggleNotification}><span><span className='fa-icon fa fa-bell'> </span></span></a>
                     <div className={"menu-details "+(openNotification?'open-menu': '')}>
                         <ul>
-                            <li><a href="">Notification 1</a></li>
-                            <li><a href="">Notification 2</a></li>
-                            <li><a href="">Notification 3</a></li>
+                            {notifications.map((notification, index)=>{
+                                return <li key={index}><a href="">{notification.message}</a></li>
+                            })}
                             <li className="see-all-menu"><a href="">See All</a></li>
                         </ul>
                     </div>    
