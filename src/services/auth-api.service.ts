@@ -9,9 +9,8 @@ export class AuthApiService extends ApiService{
         return this.post({path: 'auth/token', body: { email, password }})
     }
 
-    notifications(page:number, perPage: number){
-        console.log(this.accessToken)
-        return this.get({path: 'notifications', query: {page , perPage}, allowAborate: true})
+    notifications(page:number, perPage: number, filters: {[key:string]: any} = {}){
+        return this.get({path: 'notifications', query: {page , perPage, ...filters}, allowAborate: true})
     }
 
     refreshToken(refreshToken: string){

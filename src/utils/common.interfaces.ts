@@ -39,6 +39,8 @@ export interface NotificationStateInterface {
     
     isLoading: boolean;
     error: any;
+    grid: any[];
+    gridFilters: {[key:string]: any}
 }
 export interface UiStateInterface {
     theme: string
