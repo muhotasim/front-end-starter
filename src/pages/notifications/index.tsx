@@ -18,7 +18,7 @@ const NotificationPage:React.FC = ()=>{
     return <div className='page dashboard-page animate-fade-in'>
         <h2 className="mt-15 mb-15">Notifications</h2>
         <FilterGrid grid={grid} onFilter={(filterData)=>{
-            dispatch(notificationActions.updateState({gridFilters: filterData}))
+            dispatch(notificationActions.updateState({gridFilters: filterData, perPage: 10, page: 1}))
         }}/>
         <DataTable  columns={[
             {label: 'Id', key: 'id', dataIndex: 'id', searchable: false},
