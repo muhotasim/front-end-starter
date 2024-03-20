@@ -32,11 +32,11 @@ export const notificationSlice = createSlice({
 });
 export const notificationActions = {
     ...notificationSlice.actions,
-    notificationsList: (token:string|null, page: number, perPage: number) => async (dispatch: any) => {
+    notificationsList: (page: number, perPage: number) => async (dispatch: any) => {
         let error = null
         try {
             dispatch(notificationSlice.actions.startAction())
-            const authService = new AuthApiService(appConst.API_URL, token)
+            const authService = new AuthApiService(appConst.API_URL)
             const notificationResponse = await authService.notifications(page, perPage)
             const notificationResult = await notificationResponse.json()
             if (notificationResult.type == ResponseType.success) {

@@ -9,7 +9,6 @@ type ResetPasswordInput = {
 };
 const ResetPasswordPage:React.FC = ()=>{
     const dispatch = useDispatch()
-    const {token} = useParams()
     const navigate = useNavigate()
     const {isLoading, passwordResetSuccess, error} = useSelector(((state:RootState)=>state.users))
     const [loginData, setLoginData] = useState<ResetPasswordInput>({password: '', confirm_password: ''})
@@ -37,9 +36,9 @@ const ResetPasswordPage:React.FC = ()=>{
                     <input type="text" name='confirm_password' value={loginData.confirm_password} onChange={onChangeFormData} className='input'/>
                 </div>
                 <div className='input-box mb-15'>
-                    <button className='btn btn-md btn-primary btn-block' disabled={!loginData.confirm_password||!loginData.password || loginData.confirm_password!=loginData.password || isLoading} onClick={()=>{if(token){
-                        userActions.resetPassword(token, loginData.password)(dispatch)
-                    }}}>Reset Password <span className='ml-5'><span className={`fa-icon fa ${isLoading?'fa-spin fa-sync':'fa-arrow-right'}`} color='#fff'></span></span></button>
+                    <button className='btn btn-md btn-primary btn-block' disabled={!loginData.confirm_password||!loginData.password || loginData.confirm_password!=loginData.password || isLoading} onClick={()=>{
+                        userActions.resetPassword(loginData.password)(dispatch)
+                    }}>Reset Password <span className='ml-5'><span className={`fa-icon fa ${isLoading?'fa-spin fa-sync':'fa-arrow-right'}`} color='#fff'></span></span></button>
                 </div>
             </div>}
         </div>

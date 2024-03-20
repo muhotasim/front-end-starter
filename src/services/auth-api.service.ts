@@ -10,6 +10,7 @@ export class AuthApiService extends ApiService{
     }
 
     notifications(page:number, perPage: number){
+        console.log(this.accessToken)
         return this.get({path: 'notifications', query: {page , perPage}, allowAborate: true})
     }
 
@@ -25,8 +26,8 @@ export class AuthApiService extends ApiService{
         return this.post({path: 'auth/forgot-password', body: { email: email }})
     }
 
-    resetPassword(token:string, newPassword: string){
-        return this.patch({path: 'auth/reset-password', body: { token: token, new_password: newPassword }})
+    resetPassword(newPassword: string){
+        return this.patch({path: 'auth/reset-password', body: { token: this.accessToken, new_password: newPassword }})
     }
 
     user(){

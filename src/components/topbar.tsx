@@ -8,8 +8,7 @@ import { userActions } from "../store/user-store.store";
 const TopBar:React.FC<{toggle:()=>void}> = ({ toggle })=>{
     const dispatch = useDispatch();
     const navigate = useNavigate()
-    const { user,notifications } = useSelector((state:RootState)=>state.users)
-    const {token} = user;
+    const { notifications } = useSelector((state:RootState)=>state.users)
     const [openNotification, setOpenNotification] = useState(false);
     const [openUserDetails, setOpenUserDetails] = useState(false);
 
@@ -63,7 +62,7 @@ const TopBar:React.FC<{toggle:()=>void}> = ({ toggle })=>{
                                     navigate('/change-password')
                                     toggleUserDetails()
                                 }}>Change Password</button><button onClick={()=>{
-                                   if(token) userActions.logout(token)(dispatch)
+                                   userActions.logout()(dispatch)
                                    toggleUserDetails()
                                 }} className="btn btn-md btn-primary">Logout</button>
                             </div>

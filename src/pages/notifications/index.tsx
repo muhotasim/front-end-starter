@@ -8,11 +8,10 @@ import { notificationActions } from "../../store/notification.store";
 const NotificationPage:React.FC = ()=>{
 
     const dispatch = useDispatch();
-    const { token } = useSelector((state:RootState)=>state.users.user)
     const { total, page, perPage, notifications, isLoading } = useSelector((state:RootState)=>state.notification)
 
     useEffect(()=>{
-        notificationActions.notificationsList(token, page, perPage)(dispatch)
+        notificationActions.notificationsList(page, perPage)(dispatch)
     }, [page])
     const totalPages = Math.ceil(total/perPage)
     return <div className='page dashboard-page animate-fade-in'>

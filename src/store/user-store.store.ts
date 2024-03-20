@@ -50,7 +50,7 @@ export const userActions = {
             const tokenResult = await tokenResponse.json();
             if (tokenResult.type == ResponseType.success) {
                 const tokenInfo = tokenResult.data;
-                authService.updateAccessToken(tokenInfo.access_token);
+                authService.updateAccessToken(tokenInfo.access_token, Number(tokenInfo.ac_token_expires_at));
                 const userResponse = await authService.user();
                 const userResult = await userResponse.json();
                 if (userResult.type == ResponseType.success) {
@@ -100,7 +100,7 @@ export const userActions = {
                 const refreshResult = await refreshTokenResponse.json();
                 if (refreshResult.type = ResponseType.success) {
                     const refreshTokenData = refreshResult.data;
-                    authService.updateAccessToken(refreshTokenData.access_token);
+                    authService.updateAccessToken(refreshTokenData.access_token, Number(refreshTokenData.ac_token_expires_at));
                     const userResponse = await authService.user();
                     const userResult = await userResponse.json();
                     if (userResult.type == ResponseType.success) {
@@ -131,7 +131,7 @@ export const userActions = {
                 }
             } else if (refreshToken && accessToken) {
 
-                authService.updateAccessToken(accessToken);
+                authService.updateAccessToken(accessToken,Number(accessTokenExpiry));
                 const userResponse = await authService.user();
                 const userResult = await userResponse.json();
 
@@ -161,11 +161,11 @@ export const userActions = {
         
         dispatch(userSlice.actions.updateState({appLoading: false}))
     },
-    logout: (accessToken: string) => async (dispatch: any) => {
+    logout: () => async (dispatch: any) => {
         let error = null;
         try {
             dispatch(userSlice.actions.startAction())
-            const authService = new AuthApiService(appConst.API_URL, accessToken)
+            const authService = new AuthApiService(appConst.API_URL)
             const logoutResponse = await authService.logout();
             const logoutResult = await logoutResponse.json()
             if (logoutResult.type == ResponseType.success) {
@@ -200,12 +200,12 @@ export const userActions = {
         }
         dispatch(userSlice.actions.actionDone({ error: error }))
     },
-    resetPassword: (token: string, newPassword: string) => async (dispatch: any) => {
+    resetPassword: ( newPassword: string) => async (dispatch: any) => {
         let error = null
         try {
             dispatch(userSlice.actions.startAction())
             const authService = new AuthApiService(appConst.API_URL)
-            const resetpasswordResponse = await authService.resetPassword(token, newPassword);
+            const resetpasswordResponse = await authService.resetPassword(newPassword);
             const resetpasswordResult = await resetpasswordResponse.json()
             if (resetpasswordResult.type == ResponseType.success) {
                 dispatch(userSlice.actions.updateState({ passwordResetSuccess: true }));
@@ -218,11 +218,11 @@ export const userActions = {
         }
         dispatch(userSlice.actions.actionDone({ error: error }))
     },
-    changePassword: (accessToken: string,password: string, newPassword: string) => async (dispatch: any) => {
+    changePassword: (password: string, newPassword: string) => async (dispatch: any) => {
         let error = null
         try {
             dispatch(userSlice.actions.startAction())
-            const authService = new AuthApiService(appConst.API_URL, accessToken)
+            const authService = new AuthApiService(appConst.API_URL)
             const changepasswordResponse = await authService.changePassword(password, newPassword);
             const changePasswordResult = await changepasswordResponse.json()
             if (changePasswordResult.type == ResponseType.success) {
