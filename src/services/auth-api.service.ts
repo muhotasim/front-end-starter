@@ -10,7 +10,7 @@ export class AuthApiService extends ApiService{
     }
 
     notifications(page:number, perPage: number){
-        return this.get({path: 'notifications', query: {page , perPage}})
+        return this.get({path: 'notifications', query: {page , perPage}, allowAborate: true})
     }
 
     refreshToken(refreshToken: string){
