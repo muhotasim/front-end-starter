@@ -20,7 +20,7 @@ const NotificationPage:React.FC = ()=>{
         <DataTable  columns={[
             {label: 'Id', key: 'id', dataIndex: 'id', searchable: false},
             {label: 'Title', key: 'message', dataIndex: 'message'},
-            {label: 'Time', key: 'created_at', dataIndex: 'created_at'}
+            {label: 'Time', key: 'timestamp', dataIndex: 'timestamp'}
         ]} data={notifications} isLoading={isLoading} paginationOptions={{totalPages: totalPages, currentPage: page, onPageChange(cPage) {
             dispatch(notificationActions.updateState({page: cPage }))
         },}}/>

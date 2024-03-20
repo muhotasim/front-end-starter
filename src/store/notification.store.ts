@@ -4,6 +4,7 @@ import { AuthApiService } from '../services/auth-api.service';
 import appConst from '../constants/app.const';
 import { clearCookie, getCookie, setCookie } from '../utils/common.functions';
 import { ResponseType } from '../utils/contome.datatype';
+import moment from 'moment';
 const initialState: NotificationStateInterface = {
     page: 1,
     perPage: 10,
@@ -39,7 +40,10 @@ export const notificationActions = {
             const notificationResponse = await authService.notifications(page, perPage)
             const notificationResult = await notificationResponse.json()
             if (notificationResult.type == ResponseType.success) {
-                dispatch(notificationSlice.actions.updateState({ notifications: notificationResult.data.data, total: notificationResult.data.total }));
+                dispatch(notificationSlice.actions.updateState({ notifications: notificationResult.data.data.map(d=>{
+                    d.timestamp = d.timestamp?moment(d.timestamp).fromNow():''
+                    return d;
+                }), total: notificationResult.data.total }));
             } else {
                 error = notificationResult.message;
             }
