@@ -70,7 +70,8 @@ const DataTable: React.FC<DataTableInterface> = ({ columns, data, isLoading, onR
                     </tr>
                 </thead>
                 <tbody>
-                    {isLoading ? <tr ><td colSpan={processedColumns.length} className='table-loader__holder'><span className='fa fa-sync fa-spin'></span></td></tr> : data.map((rowData, rowIndex) => (
+                    {isLoading&&<tr><td colSpan={processedColumns.length} className='table-loader__holder'><div className='loader'><span className='fa fa-sync fa-spin'></span></div></td></tr>}
+                    {data.map((rowData, rowIndex) => (
                         <tr key={rowIndex} onClick={() => { if (onRowClick) onRowClick(rowData); }}>
                             {processedColumns.map(column => (
                                 <td key={column.key}>{rowData[column.dataIndex]}</td>
@@ -113,7 +114,7 @@ const Pagination: React.FC<PaginationInterface> = ({ currentPage = 1, totalPages
         <div className="pagination">
             <ul className="page-numbers">
 
-                <li  ><button disabled={currentPage === 1} onClick={handlePreviousPage}>Previous</button></li>
+                <li style={currentPage === 1?{opacity: '.6'}:{}}><button disabled={currentPage === 1} onClick={handlePreviousPage}>Previous</button></li>
                 {getPageNumbers().map(page => (
                     <li key={page} className={currentPage === page ? 'active' : ''}>
                         <button onClick={() => {
@@ -121,7 +122,7 @@ const Pagination: React.FC<PaginationInterface> = ({ currentPage = 1, totalPages
                         }} >{page}</button>
                     </li>
                 ))}
-                <li  ><button disabled={currentPage === totalPages} onClick={handleNextPage}>Next</button></li>
+                <li style={currentPage === totalPages?{opacity: '.6'}:{}}><button disabled={currentPage === totalPages} onClick={handleNextPage}>Next</button></li>
             </ul>
         </div>
     );
