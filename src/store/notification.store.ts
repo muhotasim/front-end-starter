@@ -40,7 +40,7 @@ export const notificationActions = {
             const notificationResponse = await authService.notifications(page, perPage)
             const notificationResult = await notificationResponse.json()
             if (notificationResult.type == ResponseType.success) {
-                dispatch(notificationSlice.actions.updateState({ notifications: notificationResult.data.data.map(d=>{
+                dispatch(notificationSlice.actions.updateState({ notifications: notificationResult.data.data.map((d: { timestamp: moment.MomentInput; })=>{
                     d.timestamp = d.timestamp?moment(d.timestamp).fromNow():''
                     return d;
                 }), total: notificationResult.data.total }));
