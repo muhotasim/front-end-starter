@@ -14,7 +14,7 @@ export enum NotificationType {
 }
 
 export interface NotificationInterface<User>{ type: NotificationType, status: NotificationStatus, message: string, link: string, user:User  }
-export interface UserStateInterface {
+export interface AuthStateInterface {
     user: {
         token: string | null;
         refetshToken: string | null;
@@ -35,6 +35,17 @@ export interface NotificationStateInterface {
     perPage: number;
     page: number;
     notifications: NotificationInterface<number>[];
+    total: number;
+    
+    isLoading: boolean;
+    error: any;
+    grid: any[];
+    gridFilters: {[key:string]: any}
+}
+export interface UsersStateInterface {
+    perPage: number;
+    page: number;
+    users: any[];
     total: number;
     
     isLoading: boolean;

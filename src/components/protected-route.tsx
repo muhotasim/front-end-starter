@@ -6,7 +6,7 @@ import BaseLayout from './base-layout';
 const ProtectedRoute: React.FC<{component: React.FC}> = ({
   component: Component,
 }) => {
-  const loggedIn = useSelector((state: RootState) => state.users.loggedIn);
+  const loggedIn = useSelector((state: RootState) => state.auth.loggedIn);
 
   return loggedIn ? <BaseLayout><Component /></BaseLayout> : <Navigate to="/login" replace />;
 };

@@ -1,21 +1,24 @@
-a,a:active,a:visited{
-    text-decoration: none;
-    color: var(--dark-font-color);
-}
-.fa-icon{
-    fill: var(--icon-color);
-}
-@for $i from 5 through 1 {
-    h#{$i} {
-        font-size: 4rem - $i * .55rem; // Example calculation for font size
-    }
+@for $i from 1 through 20 {
+    .px-#{$i}{ padding: .1rem * $i }
+    .pl-#{$i}{ padding-left: .1rem * $i }
+    .pr-#{$i}{ padding-right: .1rem * $i }
+    .pb-#{$i}{ padding-bottom: .1rem * $i }
+    .pt-#{$i}{ padding-top: .1rem * $i }
+
+    
+    .mx-#{$i}{ margin: .1rem * $i }
+    .ml-#{$i}{ margin-left: .1rem * $i }
+    .mr-#{$i}{ margin-right: .1rem * $i }
+    .mb-#{$i}{ margin-bottom: .1rem * $i }
+    .mt-#{$i}{ margin-top: .1rem * $i }
 }
 .float-right{
     float: right;
 }
-.input-box{
-
+.text-link{
+    color: var(--link-color)!important;
 }
+
 .form-label{
     display: block;
     font-size: 1.4rem;
@@ -30,9 +33,7 @@ a,a:active,a:visited{
     border-radius: .6rem;
     border-bottom-left-radius: 0;
 }
-.text-link{
-    color: var(--link-color)!important;
-}
+
 .theme-selector{
     border: none;
     outline: none;
@@ -62,19 +63,6 @@ a,a:active,a:visited{
         font-size: 1.5rem;
     }
 }
-.network-connection{
-    position: fixed;
-    height: 3rem;
-    text-align: center;
-    bottom: 0;
-    left: 0;
-    background-color: var(--primary-color);
-    width: 100%;
-    color: var(--light-font-color);
-    padding: 1rem 0;
-    animation: show-and-fade-out 10s ease-in-out;
-    animation-fill-mode: forwards;
-}
 .error-message{
     margin: 1.5rem 0;
     padding: 1rem;
@@ -87,18 +75,4 @@ a,a:active,a:visited{
     -webkit-animation: animate-fade-in .4s ease-in;
     -moz-animation: animate-fade-in .4s ease-in;
     -o-animation: animate-fade-in .4s ease-in;
-}
-@for $i from 1 through 20 {
-    .px-#{$i}{ padding: .1rem * $i }
-    .pl-#{$i}{ padding-left: .1rem * $i }
-    .pr-#{$i}{ padding-right: .1rem * $i }
-    .pb-#{$i}{ padding-bottom: .1rem * $i }
-    .pt-#{$i}{ padding-top: .1rem * $i }
-
-    
-    .mx-#{$i}{ margin: .1rem * $i }
-    .ml-#{$i}{ margin-left: .1rem * $i }
-    .mr-#{$i}{ margin-right: .1rem * $i }
-    .mb-#{$i}{ margin-bottom: .1rem * $i }
-    .mt-#{$i}{ margin-top: .1rem * $i }
 }

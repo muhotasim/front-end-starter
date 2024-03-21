@@ -4,4 +4,9 @@ export const sidebarConst = [
         link: '/',
         childrens: []
     },
+    { 
+        label: 'User',
+        link: '/users',
+        childrens: []
+    },
 ];

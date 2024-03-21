@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { userActions } from '../../store/user-store.store';
+import { authActions } from '../../store/auth-store.store';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 type ResetPasswordInput = {
     password: string;
@@ -10,13 +10,13 @@ type ResetPasswordInput = {
 const ResetPasswordPage:React.FC = ()=>{
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {isLoading, passwordResetSuccess, error} = useSelector(((state:RootState)=>state.users))
+    const {isLoading, passwordResetSuccess, error} = useSelector(((state:RootState)=>state.auth))
     const [loginData, setLoginData] = useState<ResetPasswordInput>({password: '', confirm_password: ''})
     const onChangeFormData = (event: React.ChangeEvent<HTMLInputElement>)=>{
         setLoginData({...loginData, [event.target.name]: event.target.value})
     }
     useEffect(()=>{
-        dispatch(userActions.updateState({passwordResetSuccess: false, error: null}))
+        dispatch(authActions.updateState({passwordResetSuccess: false, error: null}))
     },[])
     return <div className='page login-page'>
         <div className='login__container'>
@@ -37,8 +37,8 @@ const ResetPasswordPage:React.FC = ()=>{
                 </div>
                 <div className='input-box mb-15'>
                     <button className='btn btn-md btn-primary btn-block' disabled={!loginData.confirm_password||!loginData.password || loginData.confirm_password!=loginData.password || isLoading} onClick={()=>{
-                        userActions.resetPassword(loginData.password)(dispatch)
-                    }}>Reset Password <span className='ml-5'><span className={`fa-icon fa ${isLoading?'fa-spin fa-sync':'fa-arrow-right'}`} color='#fff'></span></span></button>
+                        authActions.resetPassword(loginData.password)(dispatch)
+                    }}>Reset Password <span className='ml-5'><span className={` fa ${isLoading?'fa-spin fa-sync':'fa-arrow-right'}`} color='#fff'></span></span></button>
                 </div>
             </div>}
         </div>

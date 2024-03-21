@@ -24,7 +24,7 @@ const SideBarItem: React.FC<MenuItem> = ({ label, link, childrens }) => {
         toggleSubMenu()
     }
     return <li>
-        <NavLink to={link}><span className="label">{label}</span> {childrens.length > 0 && <span className={"submenu__expend "+(subMenu?'open': '')} onClick={onClickMenuExpend}><span className='fa-icon fa fa-chevron-down' /></span>}</NavLink>
+        <NavLink to={link}><span className="label">{label}</span> {childrens.length > 0 && <span className={"submenu__expend "+(subMenu?'open': '')} onClick={onClickMenuExpend}><span className=' fa fa-chevron-down' /></span>}</NavLink>
         {childrens.length ? <ul className={'submenu '+(subMenu?'show': '')}>
             {childrens.map((menu, index) => {
                 return <SideBarItem key={index} label={menu.label} link={menu.link} childrens={menu.childrens} />

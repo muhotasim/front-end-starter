@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { NotificationStateInterface, UserStateInterface } from '../utils/common.interfaces';
+import { NotificationStateInterface } from '../utils/common.interfaces';
 import { AuthApiService } from '../services/auth-api.service';
 import appConst from '../constants/app.const';
 import { clearCookie, getCookie, setCookie } from '../utils/common.functions';
@@ -26,9 +26,12 @@ export const notificationSlice = createSlice({
         actionDone: (state, action: PayloadAction<{ error: any }>) => {
             return { ...state, isLoading: false, error: action.payload.error };
         },
-        updateState: (state, action: PayloadAction<{ [key: string]: any }>) => {
+        updateState: (state, action: PayloadAction<Partial<NotificationStateInterface>>) => {
             return { ...state, ...action.payload };
         },
+        reset: (state)=>{
+            return { ...state, ...initialState };
+        }
 
     }
 });

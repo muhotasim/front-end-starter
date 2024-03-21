@@ -3,9 +3,10 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import ProtectedRoute from './components/protected-route';
 import Loader from './components/loading';
 import { useDispatch, useSelector } from 'react-redux';
-import { userActions } from './store/user-store.store';
+import { authActions } from './store/auth-store.store';
 import { RootState } from './store';
 import PublicRoute from './components/public-route';
+const UserPage =  lazy(()=>import('./pages/users'));
 const Dashboard = lazy(()=>import('./pages/dashboard'))
 const Login = lazy(()=>import('./pages/login'))
 const ChangePassword = lazy(()=>import('./pages/change-password'))
@@ -15,13 +16,13 @@ const PageNotFound = lazy(()=>import('./pages/404'));
 const Notification = lazy(()=>import('./pages/notifications'));
 function App() {
   const dispatch = useDispatch();
-  const appLoading = useSelector((state:RootState)=>state.users.appLoading)
+  const appLoading = useSelector((state:RootState)=>state.auth.appLoading)
   useEffect(()=>{
-    userActions.revalidateTokens()(dispatch);
+    authActions.revalidateTokens()(dispatch);
     console.log('mounted '+new Date().toLocaleString())
     setInterval(()=>{
       console.log('refreshed: '+new Date().toLocaleString())
-      userActions.revalidateTokens()(dispatch);
+      authActions.revalidateTokens()(dispatch);
     }, 60000)
   },[])
 
@@ -38,6 +39,7 @@ function App() {
             <Route path='/' element={<ProtectedRoute component={Dashboard}/>}/>
             <Route path='/notifications' element={<ProtectedRoute component={Notification}/>}/>
             <Route path='/change-password' element={<ProtectedRoute component={ChangePassword}/>}/>
+            <Route path='/users' element={<ProtectedRoute component={UserPage}/>}/>
             <Route path='/*' element={<ProtectedRoute component={PageNotFound}/>}/>
           </Routes>
         </BrowserRouter>

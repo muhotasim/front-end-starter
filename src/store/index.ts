@@ -1,14 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userSlice from './user-store.store';
-import uiSlice from './ui-store.store';
+import authSlice from './auth-store.store';
+import uiSlice from './ui.store';
 import notificationSlice from './notification.store';
-
+import usersSlice from './users.store';
+import logger from 'redux-logger';
 export const rootStore = configureStore({
   reducer: {
-    users: userSlice,
+    auth: authSlice,
     ui: uiSlice,
-    notification: notificationSlice
+    notification: notificationSlice,
+    user: usersSlice
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
 

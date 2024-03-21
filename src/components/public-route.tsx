@@ -5,7 +5,7 @@ import { RootState } from '../store';
 const PublicRoute: React.FC<{component: React.FC}> = ({
   component: Component,
 }) => {
-  const loggedIn = useSelector((state: RootState) => state.users.loggedIn);
+  const loggedIn = useSelector((state: RootState) => state.auth.loggedIn);
 
   return !loggedIn ? <Component /> : <Navigate to="/" replace />;
 };

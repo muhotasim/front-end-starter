@@ -1,19 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DataTable from "../../components/datatable";
 import Select from "../../components/select";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { notificationActions } from "../../store/notification.store";
-import FilterGrid from "../../components/FilterGrid";
+import FilterGrid from "../../components/filter-grid";
 
 const NotificationPage:React.FC = ()=>{
-
     const dispatch = useDispatch();
     const { total, page, perPage, notifications, isLoading, grid, gridFilters } = useSelector((state:RootState)=>state.notification)
 
+    
     useEffect(()=>{
-        notificationActions.notificationsList(page, perPage, gridFilters)(dispatch)
+            notificationActions.notificationsList(page, perPage, gridFilters)(dispatch)
     }, [page, gridFilters])
+
+    useEffect(()=>{
+        return ()=>{
+            dispatch(notificationActions.reset())
+        }
+    },[])
     const totalPages = Math.ceil(total/perPage)
     return <div className='page dashboard-page animate-fade-in'>
         <h2 className="mt-15 mb-15">Notifications</h2>

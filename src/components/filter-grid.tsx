@@ -20,8 +20,8 @@ const FilterGrid = ({ grid = [], onFilter }: { grid: any[], onFilter: (grid: any
                 }} />
             </div>)}
             <div className="grid__item grid__item--filter">
-                <button className="btn btn-primary btn-md" type="submit">Search</button>
-                <button className="btn btn-primary btn-md" onClick={() => { onFilter(gridInitialValue); setGridValues(gridInitialValue) }}>Reset</button>
+                <button className="btn btn-primary btn-md" type="submit"><i className="fa fa-search"></i> Search</button>
+                <button className="btn btn-primary btn-md" onClick={() => { onFilter(gridInitialValue); setGridValues(gridInitialValue) }}> <i className="fa fa-sync"></i> Reset</button>
             </div>
         </div>
     </div>

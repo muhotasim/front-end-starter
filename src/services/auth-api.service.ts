@@ -29,8 +29,8 @@ export class AuthApiService extends ApiService{
         return this.patch({path: 'auth/reset-password', body: { token: this.accessToken, new_password: newPassword }})
     }
 
-    user(){
-        return this.get({path: 'auth/user'})
+    user(numberOfNotification:number = 5){
+        return this.get({path: 'auth/user', query: {notifications: numberOfNotification}})
     }
 
     changePassword(currentPassword:string, newPassword:string){

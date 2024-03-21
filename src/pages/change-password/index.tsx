@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { userActions } from "../../store/user-store.store";
+import { authActions } from "../../store/auth-store.store";
 import { RootState } from "../../store";
 
 const ChangePasswordPage: React.FC = () => {
@@ -12,7 +12,7 @@ const ChangePasswordPage: React.FC = () => {
     }
 
     useEffect(()=>{
-        dispatch(userActions.updateState({changePasswordSuccess:false, error: null}))
+        dispatch(authActions.updateState({changePasswordSuccess:false, error: null}))
     },[])
 
     return <div className='page change-password-page animate-fade-in'>
@@ -36,7 +36,7 @@ const ChangePasswordPage: React.FC = () => {
                         <input type="text" name='confirmPassword' value={formData.confirmPassword} onChange={onChangeFormData} className='input' />
                     </div>
                     <button className="btn btn-md btn-primary mt-15 float-right" disabled={isLoading || !formData.password || formData.newPassword != formData.confirmPassword || !formData.newPassword} onClick={() => {
-                        userActions.changePassword(formData.password, formData.newPassword)(dispatch)
+                        authActions.changePassword(formData.password, formData.newPassword)(dispatch)
                     }}>Change Password {isLoading&&<span className="fa fa-sync fa-spin"></span>}</button>
                 </div>:<div><p>Password changed successfully</p></div>}
             </div>

@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { UiStateInterface } from '../utils/common.interfaces';
 
 const initialState: UiStateInterface = {
-    theme: 'purple',
-    themeList: [ 'dark', 'light','light-mono', 'aqua-wave', 'orange', 'purple' ],
+    theme: 'aqua-wave',
+    themeList: ['aqua-wave' ],
 };
 
 let themeStr = localStorage.getItem('active-theme');
