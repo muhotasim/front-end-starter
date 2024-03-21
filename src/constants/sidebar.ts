@@ -5,8 +5,24 @@ export const sidebarConst = [
         childrens: []
     },
     { 
-        label: 'User',
-        link: '/users',
-        childrens: []
+        label: 'Access',
+        link: '',
+        childrens: [
+            { 
+                label: 'User',
+                link: '/users',
+                childrens: []
+            },
+            { 
+                label: 'Roles',
+                link: '/roles',
+                childrens: []
+            },
+            { 
+                label: 'Permissions',
+                link: '/permissions',
+                childrens: []
+            },
+        ]
     },
 ];

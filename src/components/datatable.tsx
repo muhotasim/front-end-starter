@@ -7,7 +7,7 @@ interface DataTableColumnInterface {
     searchable?: boolean,
     searchVal?: string | number,
     openSearch?: boolean,
-    render?:(value:any)=>any
+    render?:(value:any, record: any)=>any
 }
 
 interface DataTableDataInterface {
@@ -75,7 +75,7 @@ const DataTable: React.FC<DataTableInterface> = ({ columns, data, isLoading, onR
                     {data.map((rowData, rowIndex) => (
                         <tr key={rowIndex} onClick={() => { if (onRowClick) onRowClick(rowData); }}>
                             {processedColumns.map(column => (
-                                <td key={column.key}>{column.render?column.render(rowData[column.dataIndex]):rowData[column.dataIndex]}</td>
+                                <td key={column.key}>{column.render?column.render(rowData[column.dataIndex], rowData):rowData[column.dataIndex]}</td>
                             ))}
                         </tr>
                     ))}

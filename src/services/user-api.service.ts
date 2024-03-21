@@ -14,16 +14,16 @@ export class UserApiService extends ApiService{
     }
 
     
-    update(id:number,body: {[key:string]: any}|FormData){
-        return this.post({path: 'users/'+id,body:body, allowAborate: true})
+    update(id:number|string,body: {[key:string]: any}|FormData){
+        return this.patch({path: 'users/'+id,body:body, allowAborate: true})
     }
 
 
-    getById(id:number){
+    getById(id:number|string){
         return this.get({path: 'users/'+id, allowAborate: true})
     }
 
-    destroy(id:number){
+    destroy(id:number|string){
         return this.delete({path: 'users/'+id, allowAborate: true})
     }
 }

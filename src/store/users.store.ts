@@ -68,7 +68,7 @@ export const usersActions = {
             const userResponse = await authService.create(body)
             const usersResult = await userResponse.json();
             if (usersResult.type == ResponseType.success) {
-                return true;
+                return usersResult;
             } else {
                 error = usersResult.message;
 
@@ -80,7 +80,7 @@ export const usersActions = {
         dispatch(usersSlice.actions.actionDone({ error: error }))
         if (error) return false;
     },
-    update: (id: number, body: { [key: string]: any } | FormData) => async (dispatch: any) => {
+    update: (id: number|string, body: { [key: string]: any } | FormData) => async (dispatch: any) => {
         let error = null
         try {
             dispatch(usersSlice.actions.startAction())
@@ -88,7 +88,7 @@ export const usersActions = {
             const userResponse = await authService.update(id, body)
             const usersResult = await userResponse.json();
             if (usersResult.type == ResponseType.success) {
-                return true;
+                return usersResult;
             } else {
                 error = usersResult.message;
             }
@@ -99,7 +99,7 @@ export const usersActions = {
         dispatch(usersSlice.actions.actionDone({ error: error }))
         if (error) return false;
     },
-    delete: (id: number, body: { [key: string]: any } | FormData) => async (dispatch: any) => {
+    delete: (id: number|string, body: { [key: string]: any } | FormData) => async (dispatch: any) => {
         let error = null
         try {
             dispatch(usersSlice.actions.startAction())

@@ -6,10 +6,12 @@ import { RootState } from "../../store";
 import { notificationActions } from "../../store/notification.store";
 import FilterGrid from "../../components/filter-grid";
 import { usersActions } from "../../store/users.store";
+import { Link, useNavigate } from "react-router-dom";
 
 const UserPage:React.FC = ()=>{
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { total, page, perPage, users, isLoading, grid, gridFilters } = useSelector((state:RootState)=>state.user)
 
     useEffect(()=>{
@@ -33,7 +35,10 @@ const UserPage:React.FC = ()=>{
             {label: 'Name', key: 'name', dataIndex: 'name'},
             {label: 'Email', key: 'email', dataIndex: 'email'},
             {label: 'Is Superadmin', key: 'is_superadmin', dataIndex: 'is_superadmin', render: (val)=>val?"Yes":"No"},
-            {label: 'Is Active', key: 'is_active', dataIndex: 'is_active', render: (val)=>val?"Yes":"No"}
+            {label: 'Is Active', key: 'is_active', dataIndex: 'is_active', render: (val)=>val?"Yes":"No"},
+            {label: 'Action', key: 'actions', dataIndex: 'actions', render: (text, row)=>(<div>
+                <button onClick={()=>{navigate('/users/'+row.id)}} className="btn btn-sm btn-primary"><span className="fa fa-edit"></span></button>
+            </div>)}
         ]} data={users} isLoading={isLoading} paginationOptions={{totalPages: totalPages, currentPage: page, onPageChange(cPage) {
             dispatch(usersActions.updateState({page: cPage }))
         },}}/>

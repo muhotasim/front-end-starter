@@ -7,6 +7,7 @@ import { authActions } from './store/auth-store.store';
 import { RootState } from './store';
 import PublicRoute from './components/public-route';
 const UserPage =  lazy(()=>import('./pages/users'));
+const ModifyUser =  lazy(()=>import('./pages/users/modify'));
 const Dashboard = lazy(()=>import('./pages/dashboard'))
 const Login = lazy(()=>import('./pages/login'))
 const ChangePassword = lazy(()=>import('./pages/change-password'))
@@ -40,6 +41,8 @@ function App() {
             <Route path='/notifications' element={<ProtectedRoute component={Notification}/>}/>
             <Route path='/change-password' element={<ProtectedRoute component={ChangePassword}/>}/>
             <Route path='/users' element={<ProtectedRoute component={UserPage}/>}/>
+            <Route path='/users/create' element={<ProtectedRoute component={ModifyUser}/>}/>
+            <Route path='/users/:id' element={<ProtectedRoute component={ModifyUser}/>}/>
             <Route path='/*' element={<ProtectedRoute component={PageNotFound}/>}/>
           </Routes>
         </BrowserRouter>

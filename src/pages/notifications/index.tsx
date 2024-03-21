@@ -10,7 +10,6 @@ const NotificationPage:React.FC = ()=>{
     const dispatch = useDispatch();
     const { total, page, perPage, notifications, isLoading, grid, gridFilters } = useSelector((state:RootState)=>state.notification)
 
-    
     useEffect(()=>{
             notificationActions.notificationsList(page, perPage, gridFilters)(dispatch)
     }, [page, gridFilters])
