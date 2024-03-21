@@ -37,9 +37,10 @@
             th,td{
                 border-bottom: .1rem solid var(--primary-color);
                 text-align: left;
-                padding: .5rem;
+                padding: .5rem 1rem;
                 font-size: 1.4rem;
                 margin: 0;
+                line-height: 2.5rem;
             }
             td{
                 animation: animate-fade-in .6s ease-in;

@@ -99,7 +99,7 @@ export const usersActions = {
         dispatch(usersSlice.actions.actionDone({ error: error }))
         if (error) return false;
     },
-    delete: (id: number|string, body: { [key: string]: any } | FormData) => async (dispatch: any) => {
+    delete: (id: number|string) => async (dispatch: any) => {
         let error = null
         try {
             dispatch(usersSlice.actions.startAction())
@@ -107,7 +107,9 @@ export const usersActions = {
             const userResponse = await authService.destroy(id)
             const usersResult = await userResponse.json();
             if (usersResult.type == ResponseType.success) {
-                return true;
+                dispatch(usersSlice.actions.updateState({ error: null, page: 1, isLoading: false }))
+                usersActions.list(initialState.page, initialState.perPage, initialState.gridFilters)(dispatch)
+                return usersResult;
             } else {
                 error = usersResult.message;
             }
