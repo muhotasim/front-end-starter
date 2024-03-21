@@ -6,6 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { authActions } from './store/auth-store.store';
 import { RootState } from './store';
 import PublicRoute from './components/public-route';
+
+const PermissionPage =  lazy(()=>import('./pages/permissions'));
+const ModifyPermission =  lazy(()=>import('./pages/permissions/modify'));
+const RolesPage =  lazy(()=>import('./pages/roles'));
+const ModifyRole =  lazy(()=>import('./pages/roles/modify'));
 const UserPage =  lazy(()=>import('./pages/users'));
 const ModifyUser =  lazy(()=>import('./pages/users/modify'));
 const Dashboard = lazy(()=>import('./pages/dashboard'))
@@ -43,6 +48,12 @@ function App() {
             <Route path='/users' element={<ProtectedRoute component={UserPage}/>}/>
             <Route path='/users/create' element={<ProtectedRoute component={ModifyUser}/>}/>
             <Route path='/users/:id' element={<ProtectedRoute component={ModifyUser}/>}/>
+            <Route path='/roles' element={<ProtectedRoute component={RolesPage}/>}/>
+            <Route path='/roles/create' element={<ProtectedRoute component={ModifyRole}/>}/>
+            <Route path='/roles/:id' element={<ProtectedRoute component={ModifyRole}/>}/>
+            <Route path='/permissions' element={<ProtectedRoute component={PermissionPage}/>}/>
+            <Route path='/permissions/create' element={<ProtectedRoute component={ModifyPermission}/>}/>
+            <Route path='/permissions/:id' element={<ProtectedRoute component={ModifyPermission}/>}/>
             <Route path='/*' element={<ProtectedRoute component={PageNotFound}/>}/>
           </Routes>
         </BrowserRouter>

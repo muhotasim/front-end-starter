@@ -4,12 +4,16 @@ import uiSlice from './ui.store';
 import notificationSlice from './notification.store';
 import usersSlice from './users.store';
 import logger from 'redux-logger';
+import rolesSlice from './roles.store';
+import permissionSlice from './permissions.store';
 export const rootStore = configureStore({
   reducer: {
     auth: authSlice,
     ui: uiSlice,
     notification: notificationSlice,
-    user: usersSlice
+    user: usersSlice,
+    roles: rolesSlice,
+    permissions: permissionSlice
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

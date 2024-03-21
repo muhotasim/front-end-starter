@@ -53,6 +53,30 @@ export interface UsersStateInterface {
     grid: any[];
     gridFilters: {[key:string]: any}
 }
+export interface RolesStateInterface {
+    perPage: number;
+    page: number;
+    roles: any[];
+    rolesAll: {id:number, name:string}[];
+    total: number;
+    
+    isLoading: boolean;
+    error: any;
+    grid: any[];
+    gridFilters: {[key:string]: any}
+}
+export interface PermissionStateInterface {
+    perPage: number;
+    page: number;
+    permissions: any[];
+    permissionAll: {id:number, name:string}[];
+    total: number;
+    
+    isLoading: boolean;
+    error: any;
+    grid: any[];
+    gridFilters: {[key:string]: any}
+}
 export interface UiStateInterface {
     theme: string
     themeList: string[]

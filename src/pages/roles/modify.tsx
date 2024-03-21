@@ -1,49 +1,45 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { UserApiService } from "../../services/user-api.service";
 import appConst from "../../constants/app.const";
 import { ResponseType } from "../../utils/contome.datatype";
 import { useDispatch, useSelector } from "react-redux";
 import { usersActions } from "../../store/users.store";
 import { RootState } from "../../store";
 import Checkbox from "../../components/checkbox";
+import { RoleApiService } from "../../services/roles-api.service";
 import { rolesActions } from "../../store/roles.store";
+import { permissionActions } from "../../store/permissions.store";
 
-const ModifyUser = ()=>{
+const ModifyRole = ()=>{
     const {id} = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { isLoading, error } = useSelector((state:RootState)=>state.user)
-    const { rolesAll } = useSelector((state:RootState)=>state.roles)
+    const { isLoading, error, roles } = useSelector((state:RootState)=>state.roles)
+    const { permissionAll } = useSelector((state:RootState)=>state.permissions)
     const [formData, setFormData] = useState<{
-        name: string
-        email: string
-        password: string
+        name: string,
         is_active: boolean,
-        roles: number[],
+        permissions: number[]
     }>({
         name: '',
-        email: '',
-        password: '',
         is_active: true,
-        roles: [],
+        permissions: []
     });
     const onFormField = (key:string, value:any)=>{
         setFormData({...formData, [key]: value})
     }
     const fetchData = async ()=>{
-        rolesActions.all()(dispatch)
+        permissionActions.all()(dispatch);
+        
         if(id){
-            const userService = new UserApiService(appConst.API_URL);
-            const userResult =await userService.getById(id);
-            if(userResult.type == ResponseType.success){
+            const roleService = new RoleApiService(appConst.API_URL);
+            const roleResult =await roleService.getById(id);
+            if(roleResult.type == ResponseType.success){
                 
                 setFormData({
-                    name: userResult.data.name,
-                    email: userResult.data.email,
-                    password: userResult.data.password,
-                    is_active: userResult.data.is_active,
-                    roles: userResult.data.roles.map((d: { id: any; })=>d.id)
+                    name: roleResult.data.name,
+                    is_active: roleResult.data.is_active,
+                    permissions: roleResult.data.permissions.map((d: { id: any; })=>d.id)
                 })
             }
         }
@@ -51,14 +47,14 @@ const ModifyUser = ()=>{
     const onSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
         if(id){
-            let result = await usersActions.update(id, formData)(dispatch);
+            let result = await rolesActions.update(id, formData)(dispatch);
             if(result && result.type == ResponseType.success){
-                navigate('/users')
+                navigate('/roles')
             }
         }else{
-            let result = await usersActions.create(formData)(dispatch);
+            let result = await rolesActions.create(formData)(dispatch);
             if(result && result.type == ResponseType.success){
-                navigate('/users')
+                navigate('/roles')
             }
         }
     }
@@ -67,7 +63,7 @@ const ModifyUser = ()=>{
         fetchData();
     }, [])
     return <div className='page dashboard-page animate-fade-in'>
-    <h2 className="mt-15 mb-15"> {id?'Update':'Create'} User</h2>
+    <h2 className="mt-15 mb-15"> {id?'Update':'Create'} Role</h2>
     <form onSubmit={onSubmit}>
         {error&&<p className="error-message">{error}</p>}
         <div className="form-group mt-15">
@@ -75,25 +71,19 @@ const ModifyUser = ()=>{
             <input className="input" value={formData.name} onChange={e=>onFormField('name', e.target.value)}/>
         </div>
         <div className="form-group mt-15">
-            <label className="form-label">Email</label>
-            <input className="input" value={formData.email} onChange={e=>onFormField('email', e.target.value)}/>
-        </div>
-        <div className="form-group mt-15">
-            <label className="form-label">Password</label>
-            <input className="input" type="password" value={formData.password} onChange={e=>onFormField('password', e.target.value)}/>
-        </div>
-        <div className="form-group mt-15">
             <label className="form-label pb-5">Roles</label>
-            {rolesAll.map((role,index)=>(<Checkbox key={index} label={role.name} checked={formData.roles.includes(role.id)} onChange={(v)=>{ 
-                let tempRoles = [...formData.roles]
-                let indexOfRole = tempRoles.findIndex(r=>r==role.id);
+            {permissionAll.map((permission,index)=>(<div key={index}>
+                <Checkbox key={index} label={permission.name} checked={formData.permissions.includes(permission.id)} onChange={(v)=>{ 
+                let tempRoles = [...formData.permissions]
+                let indexOfRole = tempRoles.findIndex(r=>r==permission.id);
                 if(indexOfRole!=-1){
                     tempRoles.splice(indexOfRole, 1)
                 }else{
-                    tempRoles.push(role.id)
+                    tempRoles.push(permission.id)
                 }
-                setFormData({...formData, roles: [...tempRoles]})
-             }}/>))}
+                setFormData({...formData, permissions: [...tempRoles]})
+             }}/>
+            </div>))}
             
         </div>
         <div className="form-group mt-15">
@@ -105,4 +95,4 @@ const ModifyUser = ()=>{
     </div>
 }
 
-export default ModifyUser;
+export default ModifyRole;
