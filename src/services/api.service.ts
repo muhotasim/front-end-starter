@@ -1,5 +1,7 @@
-import { getCookie, setCookie } from "../utils/common.functions";
+import { rootStore } from "../store";
+import { clearCookie, getCookie, setCookie } from "../utils/common.functions";
 import { QueryParams } from "../utils/common.interfaces";
+import { ResponseType } from "../utils/contome.datatype";
 export enum HTTPMethods { GET = 'GET', PUT = 'PUT', POST = 'POST', PATCH = 'PATCH', DELETE = 'DELETE' };
 export class ApiService {
     constructor(protected readonly apiUrl: string, protected accessToken: string | null = null) { 
@@ -8,8 +10,7 @@ export class ApiService {
             this.accessToken = token;
         }
     }
-
-    private apiCaller({ method = HTTPMethods.POST, path, query = {}, body = {}, allowAborate = false }: { allowAborate?: boolean, method: HTTPMethods, path: string, query?: QueryParams, body?: { [key: string]: any } | FormData }):Promise<any> {
+    private async apiCaller({ method = HTTPMethods.POST, path, query = {}, body = {}, allowAborate = false }: { allowAborate?: boolean, method: HTTPMethods, path: string, query?: QueryParams, body?: { [key: string]: any } | FormData }): Promise<any> {
         const fetchOptions: { [key: string]: any } = {
             method: method,
             headers: {
@@ -31,28 +32,44 @@ export class ApiService {
             urlSearchParam.append(key, query[key])
         }
         let searchParamStr = urlSearchParam.toString()
-
+    
         let url = `${this.apiUrl}/${path}${searchParamStr ? '?' + searchParamStr : ''}`;
-        return fetch(url, fetchOptions);
+        
+        try {
+            const response = await fetch(url, fetchOptions);
+            const data = await response.json();
+            if(data.type == ResponseType.unauthorize){
+                clearCookie('access_token')
+                clearCookie('access_token_expiry_at')
+                clearCookie('refresh_token')
+                clearCookie('refresh_token_expiry_at')
+                window.location.reload();
+            }
+            return data;
+        } catch (error) {
+
+            console.error('Error:', error);
+            throw error;
+        }
     }
 
     updateAccessToken(accessToken: string, tokenExpiry: number) {
         this.accessToken = accessToken;
         setCookie('access_token', accessToken, tokenExpiry);
     }
-    get({ path, query = {}, allowAborate = false }: { allowAborate?: boolean, path: string, query?: QueryParams }) {
-        return this.apiCaller({ method: HTTPMethods.GET, path: path, query: query, allowAborate })
+    async get({ path, query = {}, allowAborate = false }: { allowAborate?: boolean, path: string, query?: QueryParams }) {
+        return await this.apiCaller({ method: HTTPMethods.GET, path: path, query: query, allowAborate })
     }
-    post({ path, query = {}, body = {}, allowAborate = false }: { allowAborate?: boolean, path: string, query?: QueryParams, body?: { [key: string]: any } | FormData }) {
-        return this.apiCaller({ method: HTTPMethods.POST, path, query, body, allowAborate });
+    async post({ path, query = {}, body = {}, allowAborate = false }: { allowAborate?: boolean, path: string, query?: QueryParams, body?: { [key: string]: any } | FormData }) {
+        return await this.apiCaller({ method: HTTPMethods.POST, path, query, body, allowAborate });
     }
-    put({ path, query = {}, body = {}, allowAborate = false }: { allowAborate?: boolean, path: string, query?: QueryParams, body?: { [key: string]: any } | FormData }) {
-        return this.apiCaller({ method: HTTPMethods.PUT, path, query, body, allowAborate });
+    async put({ path, query = {}, body = {}, allowAborate = false }: { allowAborate?: boolean, path: string, query?: QueryParams, body?: { [key: string]: any } | FormData }) {
+        return await this.apiCaller({ method: HTTPMethods.PUT, path, query, body, allowAborate });
     }
-    patch({ path, query = {}, body = {}, allowAborate = false }: { allowAborate?: boolean, path: string, query?: QueryParams, body?: { [key: string]: any } | FormData }) {
-        return this.apiCaller({ method: HTTPMethods.PATCH, path, query, body, allowAborate });
+    async patch({ path, query = {}, body = {}, allowAborate = false }: { allowAborate?: boolean, path: string, query?: QueryParams, body?: { [key: string]: any } | FormData }) {
+        return await this.apiCaller({ method: HTTPMethods.PATCH, path, query, body, allowAborate });
     }
-    delete({ path, query = {}, body = {}, allowAborate = false }: { allowAborate?: boolean, path: string, query?: QueryParams, body?: { [key: string]: any } | FormData }) {
-        return this.apiCaller({ method: HTTPMethods.DELETE, path, query, body, allowAborate });
+    async delete({ path, query = {}, body = {}, allowAborate = false }: { allowAborate?: boolean, path: string, query?: QueryParams, body?: { [key: string]: any } | FormData }) {
+        return await this.apiCaller({ method: HTTPMethods.DELETE, path, query, body, allowAborate });
     }
 }

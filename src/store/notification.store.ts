@@ -42,8 +42,7 @@ export const notificationActions = {
         try {
             dispatch(notificationSlice.actions.startAction())
             const authService = new AuthApiService(appConst.API_URL)
-            const notificationResponse = await authService.notifications(page, perPage, gridFilters)
-            const notificationResult = await notificationResponse.json()
+            const notificationResult = await authService.notifications(page, perPage, gridFilters);
             if (notificationResult.type == ResponseType.success) {
                 dispatch(notificationSlice.actions.updateState({grid: notificationResult.grid, notifications: notificationResult.data.data.map((d: { timestamp: moment.MomentInput; })=>{
                     d.timestamp = d.timestamp?moment(d.timestamp).fromNow():''

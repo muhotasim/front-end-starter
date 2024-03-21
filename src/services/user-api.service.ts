@@ -5,25 +5,24 @@ export class UserApiService extends ApiService{
         super(apiUrl, token);
     }
 
-    list(page:number, perPage: number, filters: {[key:string]: any} = {}){
-        return this.get({path: 'users', query: {page , perPage, ...filters}, allowAborate: true})
+    async list(page:number, perPage: number, filters: {[key:string]: any} = {}){
+        return await this.get({path: 'users', query: {page , perPage, ...filters}, allowAborate: true})
     }
     
-    create(body: {[key:string]: any}|FormData){
-        return this.post({path: 'users',body:body, allowAborate: true})
+    async create(body: {[key:string]: any}|FormData){
+        return await this.post({path: 'users',body:body, allowAborate: true})
     }
 
-    
-    update(id:number|string,body: {[key:string]: any}|FormData){
-        return this.patch({path: 'users/'+id,body:body, allowAborate: true})
+    async update(id:number|string,body: {[key:string]: any}|FormData){
+        return await this.patch({path: 'users/'+id,body:body, allowAborate: true})
     }
 
 
-    getById(id:number|string){
-        return this.get({path: 'users/'+id, allowAborate: true})
+    async getById(id:number|string){
+        return await this.get({path: 'users/'+id, allowAborate: true})
     }
 
-    destroy(id:number|string){
-        return this.delete({path: 'users/'+id, allowAborate: true})
+    async destroy(id:number|string){
+        return await this.delete({path: 'users/'+id, allowAborate: true})
     }
 }

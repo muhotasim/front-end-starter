@@ -46,13 +46,11 @@ export const authActions = {
         try {
             dispatch(authSlice.actions.startAction())
             const authService = new AuthApiService(appConst.API_URL)
-            const tokenResponse = await authService.requestToken(email, password);
-            const tokenResult = await tokenResponse.json();
+            const tokenResult = await authService.requestToken(email, password);
             if (tokenResult.type == ResponseType.success) {
                 const tokenInfo = tokenResult.data;
                 authService.updateAccessToken(tokenInfo.access_token, Number(tokenInfo.ac_token_expires_at));
-                const userResponse = await authService.user(appConst.DEFAULT_NOTIFICATION_NUMBER);
-                const userResult = await userResponse.json();
+                const userResult = await authService.user(appConst.DEFAULT_NOTIFICATION_NUMBER);
                 if (userResult.type == ResponseType.success) {
                     const user = userResult.data;
                     const loginData = {
@@ -94,14 +92,11 @@ export const authActions = {
             const authService = new AuthApiService(appConst.API_URL, accessToken ? accessToken : null);
             let nearExpiring = (accessTokenExpiry && ((Number(accessTokenExpiry) - new Date().getTime()) / 1000 < 180))
             if (refreshToken && (!accessToken || nearExpiring)) {
-                const refreshTokenResponse = await authService.refreshToken(refreshToken);
-
-                const refreshResult = await refreshTokenResponse.json();
+                const refreshResult = await authService.refreshToken(refreshToken);
                 if (refreshResult.type = ResponseType.success) {
                     const refreshTokenData = refreshResult.data;
                     authService.updateAccessToken(refreshTokenData.access_token, Number(refreshTokenData.ac_token_expires_at));
-                    const userResponse = await authService.user(appConst.DEFAULT_NOTIFICATION_NUMBER);
-                    const userResult = await userResponse.json();
+                    const userResult = await authService.user(appConst.DEFAULT_NOTIFICATION_NUMBER);
                     if (userResult.type == ResponseType.success) {
                         const user = userResult.data;
                         const loginData = {
@@ -131,8 +126,7 @@ export const authActions = {
             } else if (refreshToken && accessToken) {
 
                 authService.updateAccessToken(accessToken,Number(accessTokenExpiry));
-                const userResponse = await authService.user(appConst.DEFAULT_NOTIFICATION_NUMBER);
-                const userResult = await userResponse.json();
+                const userResult = await authService.user(appConst.DEFAULT_NOTIFICATION_NUMBER);
 
                 if (userResult.type == ResponseType.success) {
                     const user = userResult.data;
@@ -165,8 +159,7 @@ export const authActions = {
         try {
             dispatch(authSlice.actions.startAction())
             const authService = new AuthApiService(appConst.API_URL)
-            const logoutResponse = await authService.logout();
-            const logoutResult = await logoutResponse.json()
+            const logoutResult = await authService.logout();
             if (logoutResult.type == ResponseType.success) {
                 clearCookie('access_token')
                 clearCookie('access_token_expiry_at')
@@ -187,8 +180,7 @@ export const authActions = {
         try {
             dispatch(authSlice.actions.startAction())
             const authService = new AuthApiService(appConst.API_URL)
-            const forgorpasswordResponse = await authService.forgotPassword(email);
-            const forgotPasswordResult = await forgorpasswordResponse.json()
+            const forgotPasswordResult = await authService.forgotPassword(email);
             if (forgotPasswordResult.type == ResponseType.success) {
                 dispatch(authSlice.actions.updateState({ forgotPasswordMailSend: true }));
             } else {
@@ -204,8 +196,7 @@ export const authActions = {
         try {
             dispatch(authSlice.actions.startAction())
             const authService = new AuthApiService(appConst.API_URL)
-            const resetpasswordResponse = await authService.resetPassword(newPassword);
-            const resetpasswordResult = await resetpasswordResponse.json()
+            const resetpasswordResult = await authService.resetPassword(newPassword);
             if (resetpasswordResult.type == ResponseType.success) {
                 dispatch(authSlice.actions.updateState({ passwordResetSuccess: true }));
             } else {
@@ -222,8 +213,7 @@ export const authActions = {
         try {
             dispatch(authSlice.actions.startAction())
             const authService = new AuthApiService(appConst.API_URL)
-            const changepasswordResponse = await authService.changePassword(password, newPassword);
-            const changePasswordResult = await changepasswordResponse.json()
+            const changePasswordResult = await authService.changePassword(password, newPassword);
             if (changePasswordResult.type == ResponseType.success) {
                 dispatch(authSlice.actions.updateState({ changePasswordSuccess: true }));
             } else {

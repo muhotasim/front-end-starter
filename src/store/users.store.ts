@@ -42,8 +42,7 @@ export const usersActions = {
         try {
             dispatch(usersSlice.actions.startAction())
             const authService = new UserApiService(appConst.API_URL)
-            const userResponse = await authService.list(page, perPage, gridFilters)
-            const usersResult = await userResponse.json();
+            const usersResult = await authService.list(page, perPage, gridFilters);
             if (usersResult.type == ResponseType.success) {
                 dispatch(usersSlice.actions.updateState({
                     grid: usersResult.grid, users: usersResult.data.data.map((d: { timestamp: moment.MomentInput; }) => {
@@ -65,8 +64,7 @@ export const usersActions = {
         try {
             dispatch(usersSlice.actions.startAction())
             const authService = new UserApiService(appConst.API_URL)
-            const userResponse = await authService.create(body)
-            const usersResult = await userResponse.json();
+            const usersResult = await authService.create(body);
             if (usersResult.type == ResponseType.success) {
                 return usersResult;
             } else {
@@ -86,13 +84,7 @@ export const usersActions = {
             dispatch(usersSlice.actions.startAction())
             const authService = new UserApiService(appConst.API_URL)
             const userResponse = await authService.update(id, body)
-            const usersResult = await userResponse.json();
-            if (usersResult.type == ResponseType.success) {
-                return usersResult;
-            } else {
-                error = usersResult.message;
-            }
-
+            return userResponse;
         } catch (e: any) {
             error = e.message;
         }
@@ -104,8 +96,7 @@ export const usersActions = {
         try {
             dispatch(usersSlice.actions.startAction())
             const authService = new UserApiService(appConst.API_URL)
-            const userResponse = await authService.destroy(id)
-            const usersResult = await userResponse.json();
+            const usersResult = await authService.destroy(id)
             if (usersResult.type == ResponseType.success) {
                 dispatch(usersSlice.actions.updateState({ error: null, page: 1, isLoading: false }))
                 usersActions.list(initialState.page, initialState.perPage, initialState.gridFilters)(dispatch)
