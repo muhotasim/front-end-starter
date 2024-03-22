@@ -83,7 +83,7 @@ const ModifyUser = ()=>{
             <input className="input" type="password" value={formData.password} onChange={e=>onFormField('password', e.target.value)}/>
         </div>
         <div className="form-group mt-15">
-            <label className="form-label pb-5">Roles</label>
+            <label className="form-label pb-15">Roles</label>
             <div className="multi-checkbox-container">
             {rolesAll.map((role,index)=>(<div className="multi-checkbox-item">
                 <Checkbox key={index} label={role.name} checked={formData.roles.includes(role.id)} onChange={(v)=>{ 

@@ -71,7 +71,7 @@ const ModifyRole = ()=>{
             <input className="input" value={formData.name} onChange={e=>onFormField('name', e.target.value)}/>
         </div>
         <div className="form-group mt-15">
-            <label className="form-label pb-5">Roles</label>
+            <label className="form-label pb-15">Permissions</label>
             <div className="multi-checkbox-container">
             {permissionAll.map((permission,index)=>(<div key={index} className="multi-checkbox-item">
                 <Checkbox key={index} label={permission.name} checked={formData.permissions.includes(permission.id)} onChange={(v)=>{ 
