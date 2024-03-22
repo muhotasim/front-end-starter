@@ -20,10 +20,11 @@ interface DataTableInterface {
     onRowClick?: (data: DataTableDataInterface) => void,
     isLoading?: boolean,
     paginationOptions?: PaginationInterface,
-    onSearch?: (columns: DataTableColumnInterface[]) => void
+    onSearch?: (columns: DataTableColumnInterface[]) => void,
+    noDataFound?: React.ReactElement|string
 }
 
-const DataTable: React.FC<DataTableInterface> = ({ columns, data, isLoading, onRowClick, paginationOptions, onSearch }) => {
+const DataTable: React.FC<DataTableInterface> = ({ columns,noDataFound, data, isLoading, onRowClick, paginationOptions, onSearch }) => {
     const [processedColumns, setPColumns] = useState<DataTableColumnInterface[]>([])
 
     const toggleSearch = (clIndex: number) => {
@@ -79,6 +80,7 @@ const DataTable: React.FC<DataTableInterface> = ({ columns, data, isLoading, onR
                             ))}
                         </tr>
                     ))}
+                    {(data.length==0)&&<tr><td colSpan={processedColumns.length} style={{textAlign: 'center'}}> {noDataFound ?? <><i className='fa fa-database'></i> No Data Found</>}</td></tr>}
                 </tbody>
             </table>
             {(paginationOptions) && <Pagination currentPage={paginationOptions.currentPage} totalPages={paginationOptions.totalPages} onPageChange={paginationOptions.onPageChange} />}
