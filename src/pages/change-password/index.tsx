@@ -5,7 +5,7 @@ import { RootState } from "../../store";
 
 const ChangePasswordPage: React.FC = () => {
     const dispatch = useDispatch();
-    const { changePasswordSuccess, user, isLoading, error } = useSelector((state: RootState) => state.users)
+    const { changePasswordSuccess, user, isLoading, error } = useSelector((state: RootState) => state.auth)
     const [formData, setLoginData] = useState({ password: '', newPassword: '', confirmPassword: '' })
     const onChangeFormData = (event: React.ChangeEvent<HTMLInputElement>) => {
         setLoginData({ ...formData, [event.target.name]: event.target.value })
