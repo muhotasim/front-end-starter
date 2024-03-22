@@ -19,8 +19,8 @@ const Sidebar: React.FC<{ menus: MenuItem[] }> = ({ menus = [] }) => {
     </nav>
 }
 
-const SideBarItem: React.FC<MenuItem> = ({ label, link, childrens, permissionKey,iconClass }) => {
-    const [subMenu, setSubmenu] = useState(true);
+const SideBarItem: React.FC<MenuItem> = ({ label, link, childrens, permissionKey, iconClass }) => {
+    const [subMenu, setSubmenu] = useState(false);
     const toggleSubMenu = () => setSubmenu(!subMenu);
     const user = useSelector((state:RootState)=>state.auth.user);
     const { permissions, isSuperadmin } = user;

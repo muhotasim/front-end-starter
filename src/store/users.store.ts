@@ -84,7 +84,12 @@ export const usersActions = {
             dispatch(usersSlice.actions.startAction())
             const authService = new UserApiService(appConst.API_URL)
             const userResponse = await authService.update(id, body)
-            return userResponse;
+            if (userResponse.type == ResponseType.success) {
+                return userResponse;
+            } else {
+                error = userResponse.message;
+
+            }
         } catch (e: any) {
             error = e.message;
         }
