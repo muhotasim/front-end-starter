@@ -4,6 +4,7 @@ import Select from "../../components/select";
 import Checkbox from "../../components/checkbox";
 import MultiCheckbox from "../../components/multi-checkbox";
 import FileInput from "../../components/file-input";
+import RadioGroup from "../../components/radio";
 
 const DashboardPage:React.FC = ()=>{
     const [file, setFile] = useState(null)
@@ -37,6 +38,14 @@ const DashboardPage:React.FC = ()=>{
             {/* <input type="file" /> */}
             <FileInput value={file} onChange={(selected:any)=>setFile(selected)}/>
         </div>
+        <div>
+            <label className="form-label">Radio Input</label>
+            {/* <input type="file" /> */}
+            <RadioGroup value={2} options={[{label: '1', value: 1},{label: '2', value: 2},{label: '3', value: 3}]} onChange={(val)=>{
+                console.log(val)
+            }}/>
+        </div>
+
     </div>
 }
 export  default DashboardPage;
