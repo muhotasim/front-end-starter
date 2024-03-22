@@ -55,18 +55,12 @@ const DataTable: React.FC<DataTableInterface> = ({ columns,noDataFound, data, is
     }, [columns])
     return (
         <div className="data-table">
+            <div className='table-container'>
             <table>
                 <thead>
                     <tr>
                         {processedColumns.map((column, index) => (
-                            <th key={column.key}>{column.label} {column.searchable && <span onClick={() => toggleSearch(index)} className='data-table-search float-right fa fa-search'></span>}
-                                {column.openSearch ? <div className='column-search-box'>
-                                    <input type="text" className='input' value={column.searchVal} onChange={(e) => onChangeSearchVal(e.target.value, index)} />  <button onClick={() => {
-                                        if (onSearch) {
-                                            onSearch(processedColumns);
-                                        }
-                                    }}><span className='fa fa-search'></span></button> <button onClick={() => { onSearchReset(index) }}><span className='fa fa-refresh'></span></button>
-                                </div> : null}
+                            <th key={column.key}>{column.label}
                             </th>
                         ))}
                     </tr>
@@ -83,6 +77,7 @@ const DataTable: React.FC<DataTableInterface> = ({ columns,noDataFound, data, is
                     {(data.length==0)&&<tr><td colSpan={processedColumns.length} style={{textAlign: 'center'}}> {noDataFound ?? <><i className='fa fa-database'></i> No Data Found</>}</td></tr>}
                 </tbody>
             </table>
+            </div>
             {(paginationOptions) && <Pagination currentPage={paginationOptions.currentPage} totalPages={paginationOptions.totalPages} onPageChange={paginationOptions.onPageChange} />}
         </div>
     );

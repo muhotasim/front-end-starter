@@ -28,10 +28,13 @@ $sidebar-width : 20rem;
 .app__container{
     flex: 1;
     flex-grow: 1;
+    display: block;
+    width: 100%;
 }
 .app__container .container{
     margin: 6.8rem 2rem 0 2rem;
-    background-color: var(--page-background);
     min-height: 100vh;
     padding: 1rem;
+    max-width: 100%;
+    // overflow-x: auto;
 }
