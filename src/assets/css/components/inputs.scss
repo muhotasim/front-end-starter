@@ -7,6 +7,10 @@
     border-radius: .3rem;
     height: 3.2rem;
 }
+.validation-error{
+    border: 0.1rem solid #ff2f00;
+    box-shadow: 0.1rem 0.1rem 0.3rem #ff2f0047;
+}
 .input:focus{
     border: .1rem solid rgba(56, 125, 255, .4);
     box-shadow: .1rem .1rem .3rem rgba(56, 125, 255, 0.281);

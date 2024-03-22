@@ -14,6 +14,9 @@
     --login-container: #fff;
 
     --page-background: #f4faff;
+
+    --validation-error-border: #ff2f00;
+    --validation-error-box-shadow: #ff2f0047;
 }
 .aqua-wave{
    @include colors;

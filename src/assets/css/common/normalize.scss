@@ -21,5 +21,6 @@ a,a:active,a:visited{
 @for $i from 5 through 1 {
     h#{$i} {
         font-size: 4rem - $i * .35rem;
+        letter-spacing: .125rem;
     }
 }

@@ -17,6 +17,8 @@ const DashboardPage:React.FC = ()=>{
         <div className="form-group">
             <label className="form-label">User Name</label>
         <input type="text" className="input" />
+            <label className="form-label">Validation Error</label>
+        <input type="text" className="input validation-error mt-5" />
         </div>
         <div>
         <Select style={{marginTop: '15px'}} value={2} options={[{label: '1', value: 1},{label: '2', value: 2},{label: '3', value: 3}]}/>
