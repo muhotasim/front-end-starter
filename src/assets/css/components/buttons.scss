@@ -1,7 +1,7 @@
 .btn {
     outline: none;
     background-color: transparent;
-    min-width: 5rem;
+    // min-width: 5rem;
     padding: .5rem;
     border-width: .1rem;
     border-style: solid;
@@ -13,13 +13,13 @@
         width: 100%;
     }
     &-sm{
-        padding: .5rem;
+        padding: .5rem 1rem;
     }
     &-md{
-        padding: .8rem;
+        padding: .8rem 1.4rem;
     }
     &-lg{
-        padding: 1rem;
+        padding: .9rem 1.8rem;
     }
     &-primary{
         background-color: var(--primary-color);
