@@ -28,7 +28,7 @@ const UserPage:React.FC = ()=>{
             {label: 'Id', key: 'id', dataIndex: 'id', searchable: false},
             {label: 'Name', key: 'name', dataIndex: 'name'},
             {label: 'Email', key: 'email', dataIndex: 'email'},
-            {label: 'Roles', key: 'roles', dataIndex: 'roles', render: (val: any[])=>val.map((role:any)=>role.name).join(', ')},
+            {label: 'Roles', key: 'roles', dataIndex: 'roles', render: (val: any[])=>val.length?val.map((role:any)=>role.name).join(', '):'N/A'},
             {label: 'Is Active', key: 'is_active', dataIndex: 'is_active', render: (val: any)=>val?"Yes":"No"},
             {label: 'Action', key: 'actions', dataIndex: 'actions', render: (text: any, row: { id: string; })=>(<div>
                 <button onClick={()=>{navigate('/users/'+row.id)}} className="btn btn-sm btn-primary mr-10"><span className="fa fa-edit"></span></button>
