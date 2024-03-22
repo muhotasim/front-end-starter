@@ -35,7 +35,7 @@ const UserPage:React.FC = ()=>{
             dispatch(usersActions.updateState({gridFilters: filterData, perPage: 10, page: 1}))
         }}/>
         <div style={{textAlign: 'right'}}>
-        <button className="btn btn-md btn-primary mb-15" onClick={()=>{navigate('/users/create')}}>Create</button>
+        <button className="btn btn-md btn-primary mb-15" onClick={()=>{navigate('/users/create')}}><i className="fa fa-plus mr-5"></i> Create</button>
         </div>
         <DataTable  columns={[
             {label: 'Id', key: 'id', dataIndex: 'id', searchable: false},
