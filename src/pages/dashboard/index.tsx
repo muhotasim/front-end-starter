@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import DataTable from "../../components/datatable";
 import Select from "../../components/select";
 import Checkbox from "../../components/checkbox";
 import MultiCheckbox from "../../components/multi-checkbox";
+import FileInput from "../../components/file-input";
 
 const DashboardPage:React.FC = ()=>{
+    const [file, setFile] = useState(null)
     return <div className='page dashboard-page animate-fade-in'>
         <h1>Header 1</h1>
         <h2>Header 2</h2>
@@ -28,6 +30,12 @@ const DashboardPage:React.FC = ()=>{
         </div>
         <div>
         <Select style={{marginTop: '15px'}} value={2} options={[{label: '1', value: 1},{label: '2', value: 2},{label: '3', value: 3}]}/>
+        </div>
+
+        <div>
+            <label className="form-label">File Input</label>
+            {/* <input type="file" /> */}
+            <FileInput value={file} onChange={(selected:any)=>setFile(selected)}/>
         </div>
     </div>
 }

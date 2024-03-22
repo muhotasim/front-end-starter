@@ -97,3 +97,25 @@
         }
     }
 }
+
+.file-input{
+    display: flex;
+    input[type='text']{
+        color: #444;
+        border-right: none;
+    }
+    button{
+        border: 1px solid lightgray;
+        margin-left: -1px;
+        &.upload{
+            min-width: 10rem;
+            margin-left: -3px;
+            padding: .6rem .5rem;
+        }
+        &.clear{
+            margin-left: -2px;
+            border-left: none;
+            padding: .7rem 1.5rem;
+        }
+    }
+}

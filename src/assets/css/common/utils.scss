@@ -82,6 +82,11 @@
     -moz-animation: animate-fade-in .4s ease-in;
     -o-animation: animate-fade-in .4s ease-in;
 }
+.clearfix{
+    display: table;
+    content: '';
+    clear: both;
+}
 .page{
     width: 100%;
 }

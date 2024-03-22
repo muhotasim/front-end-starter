@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 
 interface OptionInterface{
     label: string|number,
@@ -19,6 +19,7 @@ interface SelectComponentInterface{
 }
 const Select:React.FC<SelectComponentInterface> = ({ style, options, value, onSearch, onChange, allowSearch, readonly, disabled, isMulti = false, placeHolder })=>{
     const [open, setOpen] = useState(false);
+    const selectRef = useRef(null)
     const [values, setValues]= useState<any[]>(isMulti?value:[value])
     const [searchText, setSearchText] = useState('')
 
@@ -50,19 +51,22 @@ const Select:React.FC<SelectComponentInterface> = ({ style, options, value, onSe
             setOpen(false)
         }
     }
-    useEffect(()=>{
-        const onSelectOpenEvent = (e:MouseEvent)=>{
-            e.preventDefault();
-            setOpen(false);
-        }
+    useEffect(() => {
+        const onSelectOpenEvent = (e: MouseEvent) => {
+            const target = e.target as HTMLElement; // Cast the event target to HTMLElement
+            if (!target.closest(selectRef.current.target)) {
+                setOpen(false); // Close the select only if the click is outside of the select component
+            }
+        };
+    
         document.addEventListener('click', onSelectOpenEvent);
-        return ()=>{
-
+    
+        return () => {
             document.removeEventListener('click', onSelectOpenEvent);
-        }
-    },[])
+        };
+    }, []);
     return <>
-        <div className={"select-input "+(open?'selected':'')} style={style} onClick={(e)=>{
+        <div ref={selectRef} className={"select-input "+(open?'selected':'')} style={style} onClick={(e)=>{
                 e.stopPropagation();
                 setOpen(true);
             }}>
