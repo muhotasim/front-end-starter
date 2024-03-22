@@ -28,9 +28,9 @@ const PermissionPage: React.FC = () => {
 
             { label: 'Permission Key', key: 'permission_key', dataIndex: 'permission_key' },
             
-            { label: 'Is Active', key: 'is_active', dataIndex: 'is_active', render: (val) => val ? "Yes" : "No" },
+            { label: 'Is Active', key: 'is_active', dataIndex: 'is_active', render: (val: any) => val ? "Yes" : "No" },
             {
-                label: 'Action', key: 'actions', dataIndex: 'actions', render: (text, row) => (<div>
+                label: 'Action', key: 'actions', dataIndex: 'actions', render: (text: any, row: { id: string; }) => (<div>
                     <button onClick={() => { navigate('/permissions/' + row.id) }} className="btn btn-sm btn-primary mr-10"><span className="fa fa-edit"></span></button>
                     <button onClick={() => { onDelete(row.id) }} className="btn btn-sm btn-primary"><span className="fa fa-trash"></span></button>
                 </div>)

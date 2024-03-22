@@ -27,8 +27,8 @@ const RolePage:React.FC = ()=>{
         setColumns([
             {label: 'Id', key: 'id', dataIndex: 'id', searchable: false},
             {label: 'Name', key: 'name', dataIndex: 'name'},
-            {label: 'Is Active', key: 'is_active', dataIndex: 'is_active', render: (val)=>val?"Yes":"No"},
-            {label: 'Action', key: 'actions', dataIndex: 'actions', render: (text, row)=>(<div>
+            {label: 'Is Active', key: 'is_active', dataIndex: 'is_active', render: (val: any)=>val?"Yes":"No"},
+            {label: 'Action', key: 'actions', dataIndex: 'actions', render: (text: any, row: { id: string; })=>(<div>
                 <button onClick={()=>{navigate('/roles/'+row.id)}} className="btn btn-sm btn-primary mr-10"><span className="fa fa-edit"></span></button>
                 
                 <button onClick={()=>{onDelete(row.id)}} className="btn btn-sm btn-primary"><span className="fa fa-trash"></span></button>
