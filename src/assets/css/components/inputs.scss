@@ -8,24 +8,38 @@
     height: 3.2rem;
 }
 .input:focus{
-    border: .1rem solid rgba(56, 125, 255, 0.281);
+    border: .1rem solid rgba(56, 125, 255, .4);
+    box-shadow: .1rem .1rem .3rem rgba(56, 125, 255, 0.281);
 }
 
 .select-input{
     background-color: #fff;
     font-size: 1.4rem;
     border-radius: .3rem;
+    border: 1px solid lightgray;
+    position: relative;
+    &.selected{
+        border: .1rem solid rgba(56, 125, 255, .4);
+        box-shadow: .1rem .1rem .3rem rgba(56, 125, 255, 0.281);
+    }
     .value-container{
        width: 100%;
        display: flex;
        flex-wrap: wrap;
-       padding: .3rem;
+       padding: 0rem;
+       position: relative;
+       .select-icon{
+        position: absolute;
+        right: 1rem;
+        top: .5rem;
+        color: rgba(156, 155, 155, 0.671);
+       }
        .value{
             background-color: lightgray;
-            margin: .3rem .5rem;
+            margin: .32rem .5rem;
             display: inline-block;
             padding: .2rem .6rem;
-            line-height: 2rem;
+            line-height: 1.8rem;
             border-radius: .3rem;
             .remove-icon{
                 opacity: .6;
@@ -50,20 +64,30 @@
     }
     .select-options{
         max-height: 25rem;
+        padding: .2rem;
         overflow-y: auto;
         background-color: #fff;
-        box-shadow: .2rem .2rem .5rem black;
-        padding: 1rem;
+        border: .1rem solid rgba(56, 125, 255, .1);
+        box-shadow: .1rem .1rem .3rem rgba(56, 125, 255, 0.281);
+        border-radius: 0.3rem;
         border-radius: .5rem;
+        position: absolute;
+        width: 100%;
+        top: 3.5rem;
         ul li{
-            padding: .5rem;
             transition-duration: .4s;
+            line-height: 3.2rem;
+            padding: 0 1rem;
+            margin-bottom: .2rem;
             &.selected{
-                background-color:rgb(231, 230, 230);
+                background-color:rgba(182, 206, 248, 0.2);
+                border-radius: .5rem;
+                font-weight: 600;
             }
         }
         ul li:hover{
-            background-color:rgb(231, 230, 230);
+            background-color:rgba(182, 206, 248, 0.2);
+            border-radius: .5rem;
         }
     }
 }

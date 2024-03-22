@@ -14,10 +14,11 @@ interface SelectComponentInterface{
     readonly?: boolean
     disabled?: boolean
     isMulti?: boolean,
-    placeHolder?: string
+    placeHolder?: string,
+    style: any
 }
-const Select:React.FC<SelectComponentInterface> = ({ options, value, onSearch, onChange, allowSearch, readonly, disabled, isMulti = false, placeHolder })=>{
-    const [open, setOpen] = useState(false);
+const Select:React.FC<SelectComponentInterface> = ({ style, options, value, onSearch, onChange, allowSearch, readonly, disabled, isMulti = false, placeHolder })=>{
+    const [open, setOpen] = useState(true);
     const [values, setValues]= useState<any[]>(isMulti?value:[value])
     const [searchText, setSearchText] = useState('')
 
@@ -61,11 +62,14 @@ const Select:React.FC<SelectComponentInterface> = ({ options, value, onSearch, o
         }
     },[])
     return <>
-        <div className="select-input" onClick={(e)=>{
+        <div className={"select-input "+(open?'selected':'')} style={style} onClick={(e)=>{
                 e.stopPropagation();
                 setOpen(true);
             }}>
-            <div className="value-container">{isMulti&&values.map((val,index)=><span key={index} className="value">{val} <span className="remove-icon" onClick={(e)=>removeValue(e, index)}>&times;</span></span>)}<input  className="search" placeholder={isMulti?placeHolder:value?value:placeHolder} onChange={e=>setSearchText(e.target.value)} value={allowSearch?searchText:isMulti?placeHolder:value}/></div>
+            <div className="value-container">
+                {isMulti&&values.map((val,index)=><span key={index} className="value">{val} <span className="remove-icon" onClick={(e)=>removeValue(e, index)}>&times;</span></span>)}<input  className="search" placeholder={isMulti?placeHolder:value?value:placeHolder} onChange={e=>setSearchText(e.target.value)} value={allowSearch?searchText:isMulti?placeHolder:value}/>
+                <span className="select-icon"><i className="fa fa-chevron-down"></i></span>
+                </div>
             {open&&<div className="select-options">
                 <ul>
                     {options&&options.filter(option=>(((allowSearch&&onSearch)?onSearch(option, searchText):true))).map((option, index)=>{
