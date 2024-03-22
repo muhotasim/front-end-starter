@@ -85,7 +85,9 @@ const ModifyPermission = () => {
                 </div>
             </div>
 
-            <button disabled={isLoading} className="btn btn-md btn-primary float-right"> <i className={`fa ${isLoading ? 'fa-sync fa-spin' : 'fa-save'}`}></i> {id ? "Update" : "Save"}</button>
+            <div className="modify-inputs-400">
+                <button disabled={isLoading} className="btn btn-md btn-primary float-right"> <i className={`fa ${isLoading ? 'fa-sync fa-spin' : 'fa-save'}`}></i> {id ? "Update" : "Save"}</button>
+            </div>
         </form>
     </div>
 }
