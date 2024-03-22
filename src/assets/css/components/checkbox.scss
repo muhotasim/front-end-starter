@@ -57,3 +57,8 @@
   
   
 
+.multi-checkbox-container{
+  display: grid;
+  grid-template-columns:  repeat(auto-fit, minmax(24rem,1fr));
+  gap: 1rem;
+}

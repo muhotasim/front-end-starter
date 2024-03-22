@@ -84,7 +84,9 @@ const ModifyUser = ()=>{
         </div>
         <div className="form-group mt-15">
             <label className="form-label pb-5">Roles</label>
-            {rolesAll.map((role,index)=>(<Checkbox key={index} label={role.name} checked={formData.roles.includes(role.id)} onChange={(v)=>{ 
+            <div className="multi-checkbox-container">
+            {rolesAll.map((role,index)=>(<div className="multi-checkbox-item">
+                <Checkbox key={index} label={role.name} checked={formData.roles.includes(role.id)} onChange={(v)=>{ 
                 let tempRoles = [...formData.roles]
                 let indexOfRole = tempRoles.findIndex(r=>r==role.id);
                 if(indexOfRole!=-1){
@@ -93,7 +95,9 @@ const ModifyUser = ()=>{
                     tempRoles.push(role.id)
                 }
                 setFormData({...formData, roles: [...tempRoles]})
-             }}/>))}
+             }}/>
+            </div>))}
+            </div>
             
         </div>
         <div className="form-group mt-15">

@@ -72,7 +72,8 @@ const ModifyRole = ()=>{
         </div>
         <div className="form-group mt-15">
             <label className="form-label pb-5">Roles</label>
-            {permissionAll.map((permission,index)=>(<div key={index}>
+            <div className="multi-checkbox-container">
+            {permissionAll.map((permission,index)=>(<div key={index} className="multi-checkbox-item">
                 <Checkbox key={index} label={permission.name} checked={formData.permissions.includes(permission.id)} onChange={(v)=>{ 
                 let tempRoles = [...formData.permissions]
                 let indexOfRole = tempRoles.findIndex(r=>r==permission.id);
@@ -84,6 +85,7 @@ const ModifyRole = ()=>{
                 setFormData({...formData, permissions: [...tempRoles]})
              }}/>
             </div>))}
+            </div>
             
         </div>
         <div className="form-group mt-15">

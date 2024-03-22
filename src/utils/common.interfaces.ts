@@ -1,5 +1,5 @@
 export interface PermissionInterface {
-    key: string;
+    permission_key: string;
 }
 export enum NotificationStatus {
     read = 'read',
@@ -21,6 +21,7 @@ export interface AuthStateInterface {
         name: string;
         email: string;
         permissions: PermissionInterface[];
+        isSuperadmin: boolean;
     },
     loggedIn: boolean;
     isLoading: boolean;

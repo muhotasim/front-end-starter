@@ -12,6 +12,7 @@ const initialState: AuthStateInterface = {
         name: '',
         email: '',
         permissions: [],
+        isSuperadmin: false,
     },
     loggedIn: false,
     isLoading: false,
@@ -60,6 +61,7 @@ export const authActions = {
                             name: user.name,
                             email: user.email,
                             permissions: user.permissions,
+                            isSuperadmin: user.is_superadmin
                         },
                         loggedIn: true,
                         notifications: user.notifications
@@ -106,6 +108,7 @@ export const authActions = {
                                 name: user.name,
                                 email: user.email,
                                 permissions: user.permissions,
+                                isSuperadmin: user.is_superadmin
                             },
                             loggedIn: true,
                             appLoading: false,
@@ -137,6 +140,7 @@ export const authActions = {
                             name: user.name,
                             email: user.email,
                             permissions: user.permissions,
+                            isSuperadmin: user.is_superadmin
                         },
                         loggedIn: true,
                         appLoading: false,
