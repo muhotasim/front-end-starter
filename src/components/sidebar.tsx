@@ -31,7 +31,7 @@ const SideBarItem: React.FC<MenuItem> = ({ label, link, childrens, permissionKey
     const isPermited = isSuperadmin || (permissions && permissions.find((permission)=>permission.permission_key==permissionKey))
     if( isPermited ){
         return <li>
-        <NavLink to={link}> {iconClass&&<i className={iconClass+' mr-10 mt-8 '}></i>} <span className="label">{label}</span> {childrens.length > 0 && <span className={"submenu__expend "+(subMenu?'open': '')} onClick={onClickMenuExpend}><span className=' fa fa-chevron-down' /></span>}</NavLink>
+        <NavLink to={link}> {iconClass&&<i className={iconClass+' mr-10 mt-8 icon'}></i>} <span className="label">{label}</span> {childrens.length > 0 && <span className={"submenu__expend "+(subMenu?'open': '')} onClick={onClickMenuExpend}><span className=' fa fa-chevron-down' /></span>}</NavLink>
         {childrens.length ? <ul className={'submenu '+(subMenu?'show': '')}>
             {childrens.map((menu, index) => {
                 return <SideBarItem key={index} iconClass={menu.iconClass} permissionKey={menu.permissionKey} label={menu.label} link={menu.link} childrens={menu.childrens} />

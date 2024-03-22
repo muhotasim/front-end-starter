@@ -2,6 +2,7 @@ import React from "react";
 import DataTable from "../../components/datatable";
 import Select from "../../components/select";
 import Checkbox from "../../components/checkbox";
+import MultiCheckbox from "../../components/multi-checkbox";
 
 const DashboardPage:React.FC = ()=>{
     return <div className='page dashboard-page animate-fade-in'>
@@ -13,7 +14,12 @@ const DashboardPage:React.FC = ()=>{
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
         <p className="text-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
         <a href="" className="text-link">Test</a>
+            <label className="form-label">Checkbox</label>
         <Checkbox label="Test" checked onChange={()=>{}}/>
+            <label className="form-label">Multi Checkbox</label>
+        <MultiCheckbox options={[{label: '1', value: 1},{label: '2', value: 2},{label: '3', value: 3}]} value={[2]} onChange={values=>{
+            console.log(values)
+        }}/>
         <div className="form-group">
             <label className="form-label">User Name</label>
         <input type="text" className="input" />

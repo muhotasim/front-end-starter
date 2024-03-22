@@ -1,11 +1,14 @@
 .filter__grid__holder{
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: .1rem solid rgba(211, 211, 211, 0.541);
     .filter__grid{
         display: flex;
         gap: 1rem;
         flex-wrap: wrap;
         margin: 2rem 0;
         .grid__item{
-            min-width: 25rem;
+            max-width: 25rem;
             label{
                 font-size: 1.6rem;
                 line-height: 1.2;
