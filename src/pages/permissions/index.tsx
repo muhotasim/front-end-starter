@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import DataTable from "../../components/datatable";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
@@ -10,6 +10,7 @@ const PermissionPage: React.FC = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [columns, setColumns] = useState<any[]>([]);
     const { total, page, perPage, permissions, isLoading, grid, gridFilters } = useSelector((state: RootState) => state.permissions)
 
     const onDelete = async (id: number | string) => {
@@ -21,6 +22,20 @@ const PermissionPage: React.FC = () => {
     }, [page, gridFilters])
 
     useEffect(() => {
+        setColumns([
+            { label: 'Id', key: 'id', dataIndex: 'id', searchable: false },
+            { label: 'Name', key: 'name', dataIndex: 'name' },
+
+            { label: 'Permission Key', key: 'permission_key', dataIndex: 'permission_key' },
+            
+            { label: 'Is Active', key: 'is_active', dataIndex: 'is_active', render: (val) => val ? "Yes" : "No" },
+            {
+                label: 'Action', key: 'actions', dataIndex: 'actions', render: (text, row) => (<div>
+                    <button onClick={() => { navigate('/permissions/' + row.id) }} className="btn btn-sm btn-primary mr-10"><span className="fa fa-edit"></span></button>
+                    <button onClick={() => { onDelete(row.id) }} className="btn btn-sm btn-primary"><span className="fa fa-trash"></span></button>
+                </div>)
+            }
+        ])
         return () => {
             dispatch(permissionActions.reset());
         }
@@ -35,20 +50,7 @@ const PermissionPage: React.FC = () => {
         <div style={{ textAlign: 'right' }}>
             <button className="btn btn-md btn-primary mb-15" onClick={() => { navigate('/permissions/create') }}><i className="fa fa-plus mr-5"></i> Create</button>
         </div>
-        <DataTable columns={[
-            { label: 'Id', key: 'id', dataIndex: 'id', searchable: false },
-            { label: 'Name', key: 'name', dataIndex: 'name' },
-
-            { label: 'Permission Key', key: 'permission_key', dataIndex: 'permission_key' },
-            
-            { label: 'Is Active', key: 'is_active', dataIndex: 'is_active', render: (val) => val ? "Yes" : "No" },
-            {
-                label: 'Action', key: 'actions', dataIndex: 'actions', render: (text, row) => (<div>
-                    <button onClick={() => { navigate('/permissions/' + row.id) }} className="btn btn-sm btn-primary mr-10"><span className="fa fa-edit"></span></button>
-                    <button onClick={() => { onDelete(row.id) }} className="btn btn-sm btn-primary"><span className="fa fa-trash"></span></button>
-                </div>)
-            }
-        ]} data={permissions} isLoading={isLoading} paginationOptions={{
+        <DataTable columns={columns} data={permissions} isLoading={isLoading} paginationOptions={{
             totalPages: totalPages, currentPage: page, onPageChange(cPage) {
                 dispatch(permissionActions.updateState({ page: cPage }))
             },
