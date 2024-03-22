@@ -7,18 +7,19 @@ export interface MenuItem {
     link: string
     childrens: MenuItem[],
     permissionKey?: string;
+    iconClass?: string;
 }
 const Sidebar: React.FC<{ menus: MenuItem[] }> = ({ menus = [] }) => {
     return <nav className="sidebar">
         <ul >
             {menus.map((menu, index) => {
-                return <SideBarItem permissionKey={menu.permissionKey} key={index} label={menu.label} link={menu.link} childrens={menu.childrens} />
+                return <SideBarItem iconClass={menu.iconClass} permissionKey={menu.permissionKey} key={index} label={menu.label} link={menu.link} childrens={menu.childrens} />
             })}
         </ul>
     </nav>
 }
 
-const SideBarItem: React.FC<MenuItem> = ({ label, link, childrens, permissionKey }) => {
+const SideBarItem: React.FC<MenuItem> = ({ label, link, childrens, permissionKey,iconClass }) => {
     const [subMenu, setSubmenu] = useState(true);
     const toggleSubMenu = () => setSubmenu(!subMenu);
     const user = useSelector((state:RootState)=>state.auth.user);
@@ -30,10 +31,10 @@ const SideBarItem: React.FC<MenuItem> = ({ label, link, childrens, permissionKey
     const isPermited = isSuperadmin || (permissions && permissions.find((permission)=>permission.permission_key==permissionKey))
     if( isPermited ){
         return <li>
-        <NavLink to={link}><span className="label">{label}</span> {childrens.length > 0 && <span className={"submenu__expend "+(subMenu?'open': '')} onClick={onClickMenuExpend}><span className=' fa fa-chevron-down' /></span>}</NavLink>
+        <NavLink to={link}> {iconClass&&<i className={iconClass+' mr-10 mt-8 '}></i>} <span className="label">{label}</span> {childrens.length > 0 && <span className={"submenu__expend "+(subMenu?'open': '')} onClick={onClickMenuExpend}><span className=' fa fa-chevron-down' /></span>}</NavLink>
         {childrens.length ? <ul className={'submenu '+(subMenu?'show': '')}>
             {childrens.map((menu, index) => {
-                return <SideBarItem key={index} permissionKey={menu.permissionKey} label={menu.label} link={menu.link} childrens={menu.childrens} />
+                return <SideBarItem key={index} iconClass={menu.iconClass} permissionKey={menu.permissionKey} label={menu.label} link={menu.link} childrens={menu.childrens} />
             })}
         </ul> : null}
     </li>

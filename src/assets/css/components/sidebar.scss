@@ -23,7 +23,7 @@
                     flex: 1;
                 }
                 &:hover, &.active{
-                    background-color: var(--primary-color-highlight);
+                    background-color: var(--primary-color-darken);
                 }
                 .submenu__expend{
                     float: right;
