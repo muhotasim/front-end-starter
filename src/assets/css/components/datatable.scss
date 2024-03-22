@@ -82,7 +82,7 @@
                 &:last-child button{
                     border-top-right-radius: .3rem;
                     border-bottom-right-radius: .3rem;
-                    border-right: 1px solid var(--primary-color);
+                    border-right: .1rem solid var(--primary-color);
                 }
                 &:first-child, &:last-child{
                     // background-color: var(--primary-color);

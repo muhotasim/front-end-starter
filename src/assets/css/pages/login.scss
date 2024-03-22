@@ -13,7 +13,7 @@
     top: 50%;
     background-color: var(--login-container);
     transform: translate(-50%, -50%);
-    border: 1px solid var(--primary-color-darken);
+    border: .1rem solid var(--primary-color-darken);
     border-radius: .8rem;
     transition-duration: .4s;
     .action-success{
