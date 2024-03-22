@@ -38,8 +38,11 @@
     margin-top: -.1rem;
     border-radius: .6rem;
     border-bottom-left-radius: 0;
+    font-size: 2rem;
 }
-
+.section-title a{
+    color: var(--light-font-color);
+}
 .theme-selector{
     border: none;
     outline: none;
