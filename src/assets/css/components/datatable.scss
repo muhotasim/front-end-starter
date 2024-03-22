@@ -57,8 +57,20 @@
             display: flex;
             li{
                 list-style: none;
-                margin-right: .4rem;
                 border-radius: .3rem;
+                
+                button{
+                    min-width: 3rem;
+                    padding: .6rem .8rem;
+                    border: .1rem solid var(--primary-color);
+                    background-color: transparent;
+                    border-right: none;
+                    cursor: pointer;
+                    &:disabled{
+                        opacity: .6;
+                        cursor: not-allowed;
+                    }
+                }
                 &:first-child button{
                     border-top-left-radius: .3rem;
                     border-bottom-left-radius: .3rem;
@@ -70,22 +82,12 @@
                 &:last-child button{
                     border-top-right-radius: .3rem;
                     border-bottom-right-radius: .3rem;
+                    border-right: 1px solid var(--primary-color);
                 }
                 &:first-child, &:last-child{
-                    background-color: var(--primary-color);
+                    // background-color: var(--primary-color);
                     button{
-                        color: var(--light-font-color);
-                    }
-                }
-                button{
-                    min-width: 3rem;
-                    padding: .6rem .8rem;
-                    border: .1rem solid var(--primary-color);
-                    background-color: transparent;
-                    cursor: pointer;
-                    &:disabled{
-                        opacity: .6;
-                        cursor: not-allowed;
+                        color: var(--dark-font-color);
                     }
                 }
             }
