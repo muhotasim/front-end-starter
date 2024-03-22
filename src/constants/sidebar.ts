@@ -9,7 +9,7 @@ export const sidebarConst:MenuItem[] = [
         iconClass: 'fa fa-gauge-high'
     },
     { 
-        label: 'Access',
+        label: 'Access Management',
         link: '',
         permissionKey: 'can-control-access',
         iconClass: 'fa fa-users-gear',
