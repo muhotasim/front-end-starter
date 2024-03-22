@@ -25,8 +25,14 @@ const ModifyRole = ()=>{
         is_active: true,
         permissions: []
     });
+    
+    const [fromValidation, setFormValidation] = useState<any>({
+        name: false})
     const onFormField = (key:string, value:any)=>{
+        let validationObject = {...fromValidation}
+        validationObject[key] = false;
         setFormData({...formData, [key]: value})
+        setFormValidation(validationObject);
     }
     const fetchData = async ()=>{
         permissionActions.all()(dispatch);
@@ -46,6 +52,14 @@ const ModifyRole = ()=>{
     }
     const onSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
+        let validationObj = {
+            name: false};
+        if(!formData.name) validationObj.name = true;
+
+        if(validationObj.name){
+            setFormValidation(validationObj);
+            return;
+        }
         if(id){
             let result = await rolesActions.update(id, formData)(dispatch);
             if(result && result.type == ResponseType.success){
@@ -67,8 +81,8 @@ const ModifyRole = ()=>{
     <form onSubmit={onSubmit}>
         {error&&<p className="error-message">{error}</p>}
         <div className="form-group mt-15">
-            <label className="form-label">Name</label>
-            <input className="input" value={formData.name} onChange={e=>onFormField('name', e.target.value)}/>
+            <label className={"form-label "+(fromValidation.name?"validation":"")}>Name</label>
+            <input className={"input "+(fromValidation.name?"validation-error":"")} value={formData.name} onChange={e=>onFormField('name', e.target.value)}/>
         </div>
         <div className="form-group mt-15">
             <label className="form-label pb-15">Permissions</label>

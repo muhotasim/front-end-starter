@@ -22,8 +22,13 @@ const ModifyPermission = ()=>{
         name: '',
         is_active: true
     });
+    const [fromValidation, setFormValidation] = useState<any>({
+        name: false})
     const onFormField = (key:string, value:any)=>{
+        let validationObject = {...fromValidation}
+        validationObject[key] = false;
         setFormData({...formData, [key]: value})
+        setFormValidation(validationObject);
     }
     const fetchData = async ()=>{
         if(id){
@@ -40,6 +45,14 @@ const ModifyPermission = ()=>{
     }
     const onSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
+        let validationObj = {
+            name: false};
+        if(!formData.name) validationObj.name = true;
+
+        if(validationObj.name){
+            setFormValidation(validationObj);
+            return;
+        }
         if(id){
             let result = await permissionActions.update(id, formData)(dispatch);
             if(result && result.type == ResponseType.success){
@@ -61,8 +74,8 @@ const ModifyPermission = ()=>{
     <form onSubmit={onSubmit}>
         {error&&<p className="error-message">{error}</p>}
         <div className="form-group mt-15">
-            <label className="form-label">Name</label>
-            <input className="input" value={formData.name} onChange={e=>onFormField('name', e.target.value)}/>
+            <label className={"form-label "+(fromValidation.name?"validation":"")}>Name</label>
+            <input className={"input "+(fromValidation.name?"validation-error":"")} value={formData.name} onChange={e=>onFormField('name', e.target.value)}/>
         </div>
         <div className="form-group mt-15">
         <Checkbox label="Is Active" checked={formData.is_active} onChange={(v)=>{ onFormField('is_active', v) }}/>

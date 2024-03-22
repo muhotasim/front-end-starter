@@ -28,8 +28,15 @@ const ModifyUser = ()=>{
         is_active: true,
         roles: [],
     });
+    const [fromValidation, setFormValidation] = useState<any>({
+        name: false,
+        email: false,
+        password: false})
     const onFormField = (key:string, value:any)=>{
+        let validationObject = {...fromValidation}
+        validationObject[key] = false;
         setFormData({...formData, [key]: value})
+        setFormValidation(validationObject);
     }
     const fetchData = async ()=>{
         rolesActions.all()(dispatch)
@@ -50,6 +57,19 @@ const ModifyUser = ()=>{
     }
     const onSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
+        let validationObj = {
+            name: false,
+            email: false,
+            password: false};
+
+        if(!formData.name) validationObj.name = true;
+        if(!formData.email) validationObj.email = true;
+        if(!formData.password) validationObj.password = true;
+
+        if(validationObj.name || validationObj.email || validationObj.password){
+            setFormValidation(validationObj);
+            return;
+        }
         if(id){
             let result = await usersActions.update(id, formData)(dispatch);
             if(result && result.type == ResponseType.success){
@@ -71,16 +91,16 @@ const ModifyUser = ()=>{
     <form onSubmit={onSubmit}>
         {error&&<p className="error-message">{error}</p>}
         <div className="form-group mt-15">
-            <label className="form-label">Name</label>
-            <input className="input" value={formData.name} onChange={e=>onFormField('name', e.target.value)}/>
+            <label className={"form-label "+(fromValidation.name?"validation":"")}>Name</label>
+            <input className={"input "+(fromValidation.name?"validation-error":"")} value={formData.name} onChange={e=>onFormField('name', e.target.value)}/>
         </div>
         <div className="form-group mt-15">
-            <label className="form-label">Email</label>
-            <input className="input" value={formData.email} onChange={e=>onFormField('email', e.target.value)}/>
+            <label className={"form-label "+(fromValidation.email?"validation":"")}>Email</label>
+            <input className={"input "+(fromValidation.email?"validation-error":"")} value={formData.email} onChange={e=>onFormField('email', e.target.value)}/>
         </div>
         <div className="form-group mt-15">
-            <label className="form-label">Password</label>
-            <input className="input" type="password" value={formData.password} onChange={e=>onFormField('password', e.target.value)}/>
+            <label className={"form-label "+(fromValidation.password?"validation":"")}>Password</label>
+            <input className={"input "+(fromValidation.password?"validation-error":"")} type="password" value={formData.password} onChange={e=>onFormField('password', e.target.value)}/>
         </div>
         <div className="form-group mt-15">
             <label className="form-label pb-15">Roles</label>
