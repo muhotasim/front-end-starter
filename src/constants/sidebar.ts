@@ -19,14 +19,14 @@ export const sidebarConst:MenuItem[] = [
                 link: '/users',
                 childrens: [],
                 permissionKey: 'can-get-users-with-count',
-                iconClass: 'fa fa-users'
+                iconClass: 'fa fa-user-group'
             },
             { 
                 label: 'Roles',
                 link: '/roles',
                 childrens: [],
                 permissionKey: 'can-get-roles-with-count',
-                iconClass: 'fa fa-user-group'
+                iconClass: 'fa fa-users'
             },
             { 
                 label: 'Permissions',
