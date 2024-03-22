@@ -18,7 +18,7 @@ interface SelectComponentInterface{
     style: any
 }
 const Select:React.FC<SelectComponentInterface> = ({ style, options, value, onSearch, onChange, allowSearch, readonly, disabled, isMulti = false, placeHolder })=>{
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const [values, setValues]= useState<any[]>(isMulti?value:[value])
     const [searchText, setSearchText] = useState('')
 
@@ -68,9 +68,9 @@ const Select:React.FC<SelectComponentInterface> = ({ style, options, value, onSe
             }}>
             <div className="value-container">
                 {isMulti&&values.map((val,index)=><span key={index} className="value">{val} <span className="remove-icon" onClick={(e)=>removeValue(e, index)}>&times;</span></span>)}<input  className="search" placeholder={isMulti?placeHolder:value?value:placeHolder} onChange={e=>setSearchText(e.target.value)} value={allowSearch?searchText:isMulti?placeHolder:value}/>
-                <span className="select-icon"><i className="fa fa-chevron-down"></i></span>
+                <span className="select-icon animate-fade-in"><i className={`fa ${(open&&allowSearch)?'fa-search':'fa-chevron-down'}`}></i></span>
                 </div>
-            {open&&<div className="select-options">
+            {open&&<div className="select-options animate-fade-in">
                 <ul>
                     {options&&options.filter(option=>(((allowSearch&&onSearch)?onSearch(option, searchText):true))).map((option, index)=>{
                         return <li key={index} onClick={(e)=>{onSelect(e, option)}} className={values.includes(option.value)?'selected':''}>{option.label}</li>

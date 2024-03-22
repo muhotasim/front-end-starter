@@ -35,12 +35,13 @@
         color: rgba(156, 155, 155, 0.671);
        }
        .value{
-            background-color: lightgray;
-            margin: .32rem .5rem;
+            background-color: rgba(211, 211, 211, 0.562);
+            margin: .32rem .2rem;
             display: inline-block;
             padding: .2rem .6rem;
             line-height: 1.8rem;
             border-radius: .3rem;
+            min-width: 4rem;
             .remove-icon{
                 opacity: .6;
                 cursor: pointer;
@@ -73,7 +74,8 @@
         border-radius: .5rem;
         position: absolute;
         width: 100%;
-        top: 3.5rem;
+        top: calc(100% + .5rem);
+        // bottom: 0;
         ul li{
             transition-duration: .4s;
             line-height: 3.2rem;

@@ -14,8 +14,13 @@ const DashboardPage:React.FC = ()=>{
         <p className="text-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
         <a href="" className="text-link">Test</a>
         <Checkbox label="Test" checked onChange={()=>{}}/>
+        <div className="form-group">
+            <label className="form-label">User Name</label>
         <input type="text" className="input" />
+        </div>
+        <div>
         <Select style={{marginTop: '15px'}} value={2} options={[{label: '1', value: 1},{label: '2', value: 2},{label: '3', value: 3}]}/>
+        </div>
     </div>
 }
 export  default DashboardPage;
