@@ -4,7 +4,6 @@
     .pr-#{$i}{ padding-right: .1rem * $i }
     .pb-#{$i}{ padding-bottom: .1rem * $i }
     .pt-#{$i}{ padding-top: .1rem * $i }
-
     
     .mx-#{$i}{ margin: .1rem * $i }
     .ml-#{$i}{ margin-left: .1rem * $i }
@@ -15,12 +14,44 @@
 .float-right{
     float: right;
 }
+.float-left{
+    float:right
+}
+.flex{
+    display: flex;
+}
+.flex-wrap{
+    flex-wrap: wrap;
+}
+.flex-direction-row{
+    flex-direction: row;
+}
+.flex-direction-row{
+    flex-direction: column;
+}
+@for $i from 1 through 5 {
+    .flex-#{$i}{
+        flex: #{$i};
+    }
+}
+.text-left{
+    text-align: left;
+}
+.text-center{
+    text-align: center;
+}
+.text-right{
+    text-align: right;
+}
 .text-link{
     color: var(--link-color)!important;
     font-size: 1.4rem;
 }
 .text-bold{
     font-weight: 600;
+}
+.text-light{
+    font-weight: 400;
 }
 .form-label{
     display: block;
@@ -92,4 +123,26 @@
 }
 .page{
     width: 100%;
+}
+.box{
+    padding: 2rem;
+    border: 1px solid lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10rem;
+    background-color: rgb(36, 36, 43);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition-duration: .4s;
+    border-radius: .3rem;
+    &:hover{
+        background-color: rgb(24, 24, 44);
+        transition-duration: .4s;
+        letter-spacing: .8rem;
+        border-radius: 5rem;
+        box-shadow: 2px 2px 5px rgb(24, 24, 44);
+        border: 1px solid rgb(24, 24, 44);
+    }
 }

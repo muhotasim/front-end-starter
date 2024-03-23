@@ -45,12 +45,15 @@ const DashboardPage:React.FC = ()=>{
                 console.log(val)
             }}/>
         </div>
-        <div className="row">
-            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-8">Test 1</div>
-            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-4">Test 2</div>
-            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-8">Test 3</div>
-            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-4">Test 4</div>
+        <div className="row mt-15 mb-15">
+            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-6"><div className="box"><p>Test 1</p></div></div>
+            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-6"><div className="box"><p>Test 2</p></div></div>
+            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-6"><div className="box"><p>Test 3</p></div></div>
+            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-6"><div className="box"><p>Test 4</p></div></div>
+            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-6"><div className="box"><p>Test 5</p></div></div>
+            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-6"><div className="box"><p>Test 6</p></div></div>
         </div>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industr</p>
     </div>
 }
 export  default DashboardPage;

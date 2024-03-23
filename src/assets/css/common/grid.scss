@@ -1,5 +1,5 @@
 $grid-columns: 12;
-$padding: 1.5rem;
+$gap: 1.5rem;
 $breakpoints: (
     xs: 0,
     sm: 576px,
@@ -14,6 +14,7 @@ $breakpoints: (
         display: table;
         content: '';
     }
+    margin: 0 - $gap;
 }
 
 
@@ -23,7 +24,7 @@ $breakpoints: (
             &-#{$breakpoint}-#{$i} {
                 width: percentage(calc($i/$grid-columns));
                 float: left;
-                padding: 0 $padding;
+                padding: 0 $gap;
             }
         }
 
