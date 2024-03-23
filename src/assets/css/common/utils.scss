@@ -1,4 +1,4 @@
-@for $i from 1 through 20 {
+@for $i from 0 through 20 {
     .px-#{$i}{ padding: .1rem * $i }
     .pl-#{$i}{ padding-left: .1rem * $i }
     .pr-#{$i}{ padding-right: .1rem * $i }

@@ -45,7 +45,12 @@ const DashboardPage:React.FC = ()=>{
                 console.log(val)
             }}/>
         </div>
-
+        <div className="row">
+            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-8">Test 1</div>
+            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-4">Test 2</div>
+            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-8">Test 3</div>
+            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-4">Test 4</div>
+        </div>
     </div>
 }
 export  default DashboardPage;
